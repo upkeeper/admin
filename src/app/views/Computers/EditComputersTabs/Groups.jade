@@ -1,0 +1,22 @@
+h3.page-header Groups
+include ../../Shared/Searchbar.jade
+.row
+    .col-xs-12
+        table.table.table-hover.grouptable
+            thead
+                tr
+                    th
+                        input(type="checkbox")
+                    th
+                        i.fa.fa-lock(data-placement="top" title="Group locked status")
+                    th Name
+                    th Description
+            tbody
+                tr(ng-repeat="group in vm.groups | filter:vm.searchvalue | limitTo:app.limit.limit")
+                    td.groupchecked()
+                        input(type="checkbox" ng-model="group.selected")
+                    td.grouplocked
+                        i.fa.fa-lock(ng-show="group.Locked" title="Group is locked")
+                    td {{group.Name}}
+                    td {{group.Description}}
+        include ../../Shared/Modals/GroupsListModal.jade

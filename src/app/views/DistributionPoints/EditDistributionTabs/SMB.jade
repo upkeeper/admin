@@ -1,0 +1,30 @@
+h3.page-header SMB
+.row
+    .col-xs-6
+        .form-distribution( ng-class="{ 'has-error': form.name.$invalid }")
+            label Share
+            input.form-control(type="text" name="name" ng-model="vm.distribution.Share")
+        .form-distribution
+            label Username 
+            input.form-control(type="text" ng-model="vm.distribution.Username")
+        .form-distribution
+            label Password
+            input.form-control(type="password" ng-model="vm.distribution.Password")
+        .form-distribution
+            label Confirm Password
+            input.form-control(type="password" ng-model="vm.distribution.PasswordConfirm")
+        .checkbox
+            label 
+                input(type="checkbox" ng-model="vm.distribution.Default")
+            span Default
+    .col-xs-6
+        .form-distribution
+            label Subnets
+            select.form-control.subnetsform(multiple)
+                option(value="subnet" ng-repeat="subnet in vm.distribution.Subnets" ng-click="vm.selectSubnet(subnet)") {{subnet.IPv4Address}} ({{subnet.IPv4Mask}})
+            br
+            .btn-group
+                input.btn.btn-success(type="button" value="Add" data-toggle="modal" data-target="#addsubnetModal")
+                input.btn.btn-success(type="button" value="Edit" data-toggle="modal" data-target="#editsubnetModal")
+                input.btn.btn-danger(type="button" value="Delete" ng-click="vm.deleteSubnet()")
+include ../../Shared/Modals/ManageSubnetModal.jade

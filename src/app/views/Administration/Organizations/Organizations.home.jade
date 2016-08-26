@@ -1,0 +1,18 @@
+include ../../Shared/Searchbar.jade
+.row
+    table.table.table-hover.table-striped.grouptable
+        thead
+            tr
+                th Name
+                th Description
+                th Id
+                th Allow clients to automatically register
+        tbody
+            tr(dir-paginate="org in vm.organizations | filter:vm.searchvalue | itemsPerPage:app.limit.limit")
+                td(ng-click="vm.editOrganization(org)") {{org.Name}}
+                td(ng-click="vm.editOrganization(org)") {{org.Description}}
+                td(ng-click="vm.editOrganization(org)") {{org.Id}}
+                td
+                    i.fa.fa-check(ng-show="org.AutoRegisterClients")
+                    i.fa.fa-minus(ng-show="!org.AutoRegisterClients")
+include ../../Shared/Indexbuttonbar.jade

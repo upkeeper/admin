@@ -1,0 +1,6 @@
+.row
+	.col-xs-12
+		.buttontoolbar
+			.btn-group
+				input.btn.btn-success(type="submit" value="Save" ng-disabled="form.$invalid")
+				input.btn.btn-danger(type="button" value="Delete" ng-click="vm.delete()")

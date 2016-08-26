@@ -1,0 +1,68 @@
+.row.searchbar
+    .form-group.search
+        .input-group
+            input.form-control(placeholder="{{vm.searchbarvalue}}" ng-model="vm.searchvalue")
+            span.input-group-btn
+                button.btn.btn-primary.btn-icon()
+                    i.fa.fa-search
+                div.btn.btn-primary.btn-icon.btn-arrow(ng-click="vm.toggleSearchBar()")
+                    i.fa.fa-arrow-down(rotate-flip="vm.rotated")
+    .form-group.limitdropdown
+        select.form-control(ng-model="app.limit" ng-options="item.limit for item in app.listlimit" ng-change="setListLimit()")
+.row
+    div(uib-collapse="vm.isCollapsed")
+        .row
+            .col-xs-4
+                .form-group
+                    label Group
+                    select.form-control(ng-model="vm.groupfilter" ng-options="item.Value for item in vm.groups")
+                        option(value="") -- Select --
+            .col-xs-4
+                .form-group
+                    label Task
+                    select.form-control(ng-model="vm.taskfilter" ng-options="item.Value for item in vm.tasks")
+                        option(value="") -- Select --
+            .col-xs-4
+                .form-group
+                    label Hardware
+                    select.form-control(ng-model="vm.hardwarefilter" ng-options="item.Value for item in vm.hardwares")
+                        option(value="") -- Select --
+        .row
+            .col-xs-4
+                .form-group
+                    label Application
+                    select.form-control(ng-model="vm.applicationfilter" ng-options="item.Value for item in vm.applications")
+                        option(value="") -- Select --
+            .col-xs-4
+                .form-group
+                    label Platform
+                    select.form-control(ng-model="vm.platformfilter" ng-options="item.Value for item in vm.platforms")
+                        option(value="") -- Select --
+            .col-xs-4
+                .form-group
+                    label Status
+                    select.form-control(ng-model="vm.statusfilter")
+                        option(value="") -- Select --
+                        option(value="0") Installation not started (Status 0)
+                        option(value="7") Installation in progress (Status 1-8)
+                        option(value="9") Application changes (Status 9)
+                        option(value="") Disabled
+        .row
+            .col-xs-10
+                .form-group
+                    label Instant task
+                    .input-group
+                        select.form-control(ng-options="item.Value for item in vm.functions" ng-model="vm.selectedTask")
+                            option(value="") -- Select --
+                        span.input-group-btn
+                            button.btn.btn-primary.btn-icon(ng-click="vm.runInstantTask()")
+                                i.fa.fa-paper-plane
+            .col-xs-2
+                .form-group
+                    label Exportera till Excel
+                    span.input-group-btn
+                            button.btn.btn-primary.btn-icon(ng-click="vm.exportToExcel()")
+                                i.fa.fa-file-excel-o
+
+
+                                        

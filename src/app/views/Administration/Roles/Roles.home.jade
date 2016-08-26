@@ -1,0 +1,12 @@
+include ../../Shared/Searchbar.jade
+.row
+    table.table.table-hover.table-striped.grouptable
+        thead
+            tr
+                th Name
+                th Full Name
+        tbody
+            tr(dir-paginate="role in vm.roles | filter:vm.searchvalue | itemsPerPage:app.limit.limit")
+                td(ng-click="vm.editRole(role)") {{role.Name}}
+                td(ng-click="vm.editRole(role)") {{role.Description}}
+pagination-bar(create-permission="'Application_Create_Edit'" create-item="vm.create()")

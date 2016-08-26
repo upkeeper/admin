@@ -1,0 +1,19 @@
+.row
+    div(role="tabpanel")
+        ul.nav.nav-tabs(role="tablist")
+            li.active(role="presentation")
+                a(data-target="#general" aria-controls="home" role="tab" data-toggle="tab") General
+            li(role="presentation")
+                a(data-target="#computers" aria-controls="home" role="tab" data-toggle="tab") Computers
+            li(role="presentation" ng-show="app.HasPermission('Department_View')")
+                a(data-target="#users" aria-controls="home" role="tab" data-toggle="tab") Users
+.row
+    form(name="form" novalidate  ng-submit="vm.save()")
+        .tab-content
+            .tab-pane.fade.in.active#general
+                include ../Departments/Tabs/General.jade
+                save-button(delete-permission="'Department_Create_Edit'" delete-item="vm.delete()")
+            .tab-pane.fade#computers
+                include ../Shared/Sections/Computers.jade
+            .tab-pane.fade#users
+                include ../Shared/Sections/Users.jade

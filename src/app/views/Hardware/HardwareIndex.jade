@@ -1,0 +1,18 @@
+include ../Shared/Searchbar.jade
+.row
+    table.table.table-hover.table-striped
+            thead
+                tr
+                    th Name
+                    th Description
+                    th vPro
+                    th Number of Computers
+            tbody
+                tr(dir-paginate="hardware in vm.hardwares | filter:vm.searchvalue | itemsPerPage:app.limit.limit")
+                    td(ng-click="vm.editHardware(hardware)") {{hardware.Name}}
+                    td {{hardware.Description}}
+                    td
+                        i.fa.fa-check(ng-show="platform.Vpro")
+                        i.fa.fa-minus(ng-show="!platform.Vpro")
+                    td {{hardware.ComputerCount}}
+pagination-bar(create-permission="'Hardware_Create_Edit'" create-item="vm.create()")

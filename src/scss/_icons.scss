@@ -1,0 +1,26 @@
+.glow-green{
+  -webkit-animation-name: greenPulse;
+  -webkit-animation-duration: 2s;
+  -webkit-animation-iteration-count: infinite;
+}
+
+.glow-orange{
+  -webkit-animation-name: orangePulse;
+  -webkit-animation-duration: 2s;
+  -webkit-animation-iteration-count: infinite;
+}
+
+.powered-off{
+    opacity: 0.81;
+}
+@-webkit-keyframes greenPulse {
+  from { color: #44A604; -webkit-text-shadow: 0 0 7px #333; opacity: 0.7}
+  50% { text-shadow: 0 0 10px #44A604; }
+  to { color: #44A604; -webkit-text-shadow: 0 0 7px #333; opacity: 0.7}
+}
+
+@-webkit-keyframes orangePulse {
+  from { color: #FF9507; -webkit-text-shadow: 0 0 7px #333; opacity: 0.7}
+  50% { text-shadow: 0 0 10px #FF9507; }
+  to { color: #FF9507; -webkit-text-shadow: 0 0 7px #333; opacity: 0.7}
+}

@@ -1,0 +1,21 @@
+h3.page-header AD Settings
+.row
+    .col-xs-6
+        .form-group
+            label Username
+            input.form-control(ng-model="vm.config.ADUsersUsername")
+        .form-group
+            label Password
+            input.form-control(type="password" ng-model="vm.config.ADUsersPassword")
+        .form-group
+            label Domain
+            input.form-control(ng-model="vm.config.ADUsersDomain")
+        .form-group
+            label Root node
+            input.form-control(ng-model="vm.config.ADUsersRoot")
+        .form-group
+            label Include groups
+            input.form-control(ng-model="vm.config.ADUsersIncludeGroups")
+        .form-group
+            label Exclude groups
+            input.form-control(ng-model="vm.config.ADUsersExcludeGroups")

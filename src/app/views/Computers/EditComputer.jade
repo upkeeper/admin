@@ -1,0 +1,37 @@
+.row
+	div(role="tabpanel")
+		ul.nav.nav-tabs(role="tablist")
+			li.active(role="presentation")
+				a(data-target="#general" aria-controls="home" role="tab" data-toggle="tab") General
+			li(role="presentation")
+				a(data-target="#advanced" aria-controls="home" role="tab" data-toggle="tab") Advanced
+			li(role="presentation" ng-show="app.HasPermission('Computer_Manage_Applications')")
+				a(data-target="#applications" aria-controls="home" role="tab" data-toggle="tab") Applications
+			li(role="presentation" ng-show="app.HasPermission('Computer_Manage_Groups')")
+				a(data-target="#groups" aria-controls="home" role="tab" data-toggle="tab") Groups
+			li(role="presentation" ng-show="app.HasPermission('Computer_Manage_Tasks')")
+				a(data-target="#tasks" aria-controls="home" role="tab" data-toggle="tab") Tasks
+			li(role="presentation")
+				a(data-target="#settings" aria-controls="home" role="tab" data-toggle="tab" ng-click="vm.initSettings()") Settings
+			li(role="presentation")
+				a(data-target="#eventlog" aria-controls="home" role="tab" data-toggle="tab") Eventlog
+			
+.row
+	form(name="form" novalidate  ng-submit="vm.save()")
+		.tab-content
+			.tab-pane.fade.in.active#general
+				include ../Computers/EditComputersTabs/General.jade
+				save-button(delete-permission="'Computer_Delete'" delete-item="vm.delete()")
+			.tab-pane.fade#advanced
+				include ../Computers/EditComputersTabs/Advanced.jade
+				save-button(delete-permission="'Computer_Delete'" delete-item="vm.delete()")
+			.tab-pane.fade#applications
+				include ../Shared/Sections/Applications.jade
+			.tab-pane.fade#groups
+				include ../Computers/EditComputersTabs/Groups.jade
+			.tab-pane.fade#tasks
+				include ../Computers/EditComputersTabs/Tasks.jade
+			.tab-pane.fade#settings
+				include ../Shared/Sections/Settings.jade
+			.tab-pane.fade#eventlog
+				include ../Shared/Sections/Eventlog.jade

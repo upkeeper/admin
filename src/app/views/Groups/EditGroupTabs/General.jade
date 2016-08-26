@@ -1,0 +1,21 @@
+h3.page-header General
+.row
+	.col-xs-6
+		.form-group( ng-class="{ 'has-error': form.name.$invalid }")
+			label Name
+			input.form-control(type="text" name="name" placeholder="Name" ng-model="vm.group.Name" required)
+		.form-group
+			label Category
+			select.form-control(ng-model="vm.group.CategoryId" ng-options="condition.Id as condition.Name for condition in vm.categories")
+		.checkbox
+			label 
+				input(type="checkbox" ng-model="vm.group.IsDynamic")
+			span Is Dynamic
+		.checkbox
+			label 
+				input(type="checkbox" ng-model="vm.group.Locked")
+			span Locked
+	.col-xs-6
+		.form-group
+			label Description
+			textarea.form-control(type="text" cols="50", rows="12", ng-model="vm.group.Description")

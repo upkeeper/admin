@@ -1,0 +1,125 @@
+@import url(http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,700italic,300,400,700);
+@import url(http://fonts.googleapis.com/css?family=Lato&subset=latin,latin-ext);
+@import "_login.scss";
+@import "_variables.scss";
+@import "_mainviewanimation.scss";
+@import "_sidebar.scss";
+@import "_topbar.scss";
+@import "_homeindex.scss";
+@import "_editapplication.scss";
+@import "_modal.scss";
+@import "_homemessages.scss";
+@import "_tablestyles.scss";
+@import "_groupTable.scss";
+@import "_tasktable.scss";
+@import "_icons.scss";
+@import "_codemirror.scss";
+@import "_buttons.scss";
+@import "_calenderwidget.scss";
+@import "_menudropdown.scss";
+@import "_distributionPoints.scss";
+@import "_batchJobs.scss";
+html {
+    background-color: $white no-repeat center center fixed;
+    background-size: cover;
+}
+
+body {
+    font-family: 'Lato', sans-serif;
+    background-color: #CEDAE0;
+    color: #2a4667;
+}
+
+.fullImageBackground {
+    background: #000 url(../images/bg.jpg) no-repeat center center fixed;
+    body {
+        background-color: transparent;
+    }
+}
+
+.wrapper {
+    margin: 0 auto;
+}
+
+#main {
+    padding: 15px;
+    padding-top: $topbarheight+ 15px;
+    margin-left: $sidebarwidth;
+    border-radius: 2px;
+}
+
+.loginMargin {
+    margin-left: 0 !important;
+}
+
+.container-fluid {
+    background-color: #FEFEFE;
+    -webkit-box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.2);
+    min-height: 200px;
+}
+
+.inner-wrapper {
+    padding: 15px;
+    //padding-top:10px;
+    //padding-top:0;
+}
+
+.fa {
+    width: 10px;
+}
+
+::-webkit-scrollbar {
+    width: 13px;
+}
+
+::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.5);
+}
+
+.nav-tabs {
+    li {
+        cursor: pointer;
+    }
+}
+
+.alert {
+    position: fixed;
+    top: 70px;
+    right: 15px;
+    z-index: 10000;
+    background-color: #4a5864;
+    color: #fff;
+}
+
+.am-fade {
+    animation: my_fade_animation 0.5s linear;
+    //-webkit-animation: my_fade_animation 0.5s linear;
+}
+
+@keyframes my_fade_animation {
+    from {
+        opacity: 0;
+        transform: translateY(-50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0px);
+    }
+}
+
+@-webkit-keyframes my_fade_animation {
+    from {
+        opacity: 0;
+        transform: translateY(-50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0px);
+    }
+}

@@ -1,0 +1,22 @@
+h3.page-header Tasks
+include ../../Shared/Searchbar.jade
+.row
+	.col-xs-12
+		table.table.table-hover
+			thead
+				tr
+					th()
+						input(type="checkbox")
+					th() Lock
+					th() Name
+					th() Description
+
+			tbody
+				tr(ng-repeat="task in vm.tasks | filter:vm.searchvalue | limitTo:app.limit.limit")
+					td
+						input(type="checkbox" ng-model="task.selected" ng-disabled="task.Inherited")
+					td {{task.Lock}}
+					td {{task.Name}}
+					td {{task.Description}}
+
+		include ../Modals/TasksListModal.jade

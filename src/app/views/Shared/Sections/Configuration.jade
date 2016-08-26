@@ -1,0 +1,57 @@
+h3.page-header Pre Command
+.row
+    .col-xs-6
+        .form-group
+            label Command execute before service os actions
+            input.form-control(ng-model="vm.config.PreCommand")
+    .col-xs-6
+        label Command should be executed in following scenarios
+        .checkbox
+            label
+                input(type="checkbox" ng-model="vm.config.PreCommandNormal")
+            span Normal
+        .checkbox
+            label
+                input(type="checkbox" ng-model="vm.config.PreCommandReinstall")
+            span Reinstall
+        .checkbox
+            label
+                input(type="checkbox" ng-model="vm.config.PreCommandScratch")
+            span Scratch
+h3.page-header Post Command
+.row
+    .col-xs-6
+        .form-group
+            label Command execute before service os reboots
+            input.form-control(ng-model="vm.config.PostCommand")
+    .col-xs-6
+        label Command should be executed in following scenarios
+        .checkbox
+            label
+                input(type="checkbox" ng-model="vm.config.PostCommandNormal")
+            span Normal
+        .checkbox
+            label
+                input(type="checkbox" ng-model="vm.config.PostCommandReinstall")
+            span Reinstall
+        .checkbox
+            label
+                input(type="checkbox" ng-model="vm.config.PostCommandScratch")
+            span Scratch
+h3.page-header Disk and bootstore
+.row
+    .col-xs-6
+        .form-group
+            label Diskpart Scratch
+            textarea.form-control(ng-model="vm.config.DiskpartScratch" rows="5")
+        .form-group
+            label Diskpart Reinstall
+            textarea.form-control(ng-model="vm.config.DiskpartReinstall" rows="5")
+        .form-group
+            label Diskpart Normal
+            textarea.form-control(ng-model="vm.config.DiskpartNormal" rows="5")
+        
+    .col-xs-6
+        .form-group
+            label BCD Command
+            textarea.form-control(ng-model="vm.config.BCDCommand" rows="20")

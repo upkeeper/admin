@@ -1,0 +1,21 @@
+h3.page-header Required Applications
+include ../../Shared/Searchbar.jade
+.row
+	.col-xs-12
+		table.table.table-hover
+			thead
+				tr
+					th()
+						input(type="checkbox")
+					th() Name
+					th() Version
+					th() Description
+				
+			tbody
+				tr(ng-repeat="application in vm.reqApplications | filter:vm.searchvalue | limitTo:app.limit.limit")
+					td
+						input(type="checkbox" ng-model="application.selected")
+					td {{application.Name}}
+					td {{application.Version}}
+					td {{application.Description}}
+		include ../../Shared/Modals/RequiredAppsModal.jade

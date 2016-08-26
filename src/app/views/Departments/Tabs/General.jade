@@ -1,0 +1,10 @@
+h3.page-header General
+.row
+	.col-xs-6
+		.form-department( ng-class="{ 'has-error': form.name.$invalid }")
+			label Name
+			input.form-control(type="text" name="name" placeholder="Name" ng-model="vm.department.Name" required)
+	.col-xs-6
+		.form-department
+			label Description
+			textarea.form-control(type="text" cols="50", rows="12", ng-model="vm.department.Description")

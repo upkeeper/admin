@@ -1,0 +1,45 @@
+include ../Shared/Computersearchbar.jade
+
+.row
+    table.table.table-hover.table-striped.computertable
+            thead
+                tr
+                    th.tablecheckbox
+                        input(type="checkbox" ng-model="vm.selectedAll" ng-click="vm.checkAll()")
+                    th.computerstatus
+                        i.fa.fa-desktop(data-placement="top" title="Computer Status")
+                    th.computerapplication
+                        i.fa.fa-gift(data-placement="top" title="Status of installed applications")
+                    th.computername(ng-click="vm.orderBy='Name'; vm.reverseSort = !vm.reverseSort; vm.sortKey='Name'") Name 
+                        span.fa(ng-show="vm.sortKey=='Name'" ng-class="{'fa-sort-asc':vm.reverseSort, 'fa-sort-desc':!vm.reverseSort}")
+                    th.computeronline
+                        i.fa.fa-sitemap(data-placement="top" title="Computer connection status")
+                    th.computerlastconnection(ng-click="vm.orderBy='LastConnection'; vm.reverseSort = !vm.reverseSort; vm.sortKey='LastConnection'") Last Sync  
+                        span.fa(ng-show="vm.sortKey=='LastConnection'" ng-class="{'fa-sort-asc':vm.reverseSort, 'fa-sort-desc':!vm.reverseSort}")
+                    th.computermac.hidden-xs.hidden-sm(ng-click="vm.orderBy='MACAddress'; vm.reverseSort = !vm.reverseSort; vm.sortKey='MACAddress'") MAC Address 
+                        span.fa(ng-show="vm.sortKey=='MACAddress'" ng-class="{'fa-sort-asc':vm.reverseSort, 'fa-sort-desc':!vm.reverseSort}")
+                    th.computerip(ng-click="vm.orderBy='ReportedIPAddress'; vm.reverseSort = !vm.reverseSort; vm.sortKey='ReportedIPAddress'") IP Address 
+                        span.fa(ng-show="vm.sortKey=='ReportedIPAddress'" ng-class="{'fa-sort-asc':vm.reverseSort, 'fa-sort-desc':!vm.reverseSort}")
+                    th.computerhardware(ng-click="vm.orderBy='HardwareName'; vm.reverseSort = !vm.reverseSort; vm.sortKey='HardwareName'") Hardware 
+                        span.fa(ng-show="vm.sortKey=='HardwareName'" ng-class="{'fa-sort-asc':vm.reverseSort, 'fa-sort-desc':!vm.reverseSort}")
+                    th.computerplatform.hidden-xs.hidden-sm(ng-click="vm.orderBy='PlatformName'; vm.reverseSort = !vm.reverseSort; vm.sortKey='PlatformName'") Platform 
+                        span.fa(ng-show="vm.sortKey=='PlatformName'" ng-class="{'fa-sort-asc':vm.reverseSort, 'fa-sort-desc':!vm.reverseSort}")
+                    th.computeruser.hidden-xs.hidden-sm(ng-click="vm.orderBy='LastLoggedInUser'; vm.reverseSort = !vm.reverseSort; vm.sortKey='LastLoggedInUser'") User 
+                        span.fa(ng-show="vm.sortKey=='LastLoggedInUser'" ng-class="{'fa-sort-asc':vm.reverseSort, 'fa-sort-desc':!vm.reverseSort}")
+            tbody
+                tr(dir-paginate="comp in vm.computers | filter:vm.groupfilter.Value | filter:vm.taskfilter.Value | filter:vm.hardwarefilter.Value| filter:vm.applicationfilter.Value| filter:vm.platformfilter.Value | filter:vm.statusfilter.Value | orderBy:vm.orderBy:vm.reverseSort | filter:vm.searchvalue | itemsPerPage:app.limit.limit ")
+                    td.tablecheckbox
+                        input(type="checkbox" ng-model="comp.selected")
+                    td.computerstatus(ng-click="vm.editComputer(comp)")
+                        i.fa.fa-wrench(ng-show="comp.Status==0" data-placement="top" title="New computer, installation not started.")
+                    td.computerapplication(ng-click="vm.editComputer(comp)")
+                    td.computername(ng-click="vm.editComputer(comp)") {{comp.Name}}
+                    td.computeronline
+                        i.fa.fa-circle(ng-class="vm.getComputerConnectionStatus(comp.ConnectionStatus)")
+                    td.computerlastconnection(ng-click="vm.editComputer(comp)") {{comp.LastConnectionText}}
+                    td.computermac.hidden-xs.hidden-sm {{comp.MACAddress}}
+                    td.computerip {{comp.ReportedIPAddress}}
+                    td.computerhardware {{comp.HardwareName}}
+                    td.computerplatform.hidden-xs.hidden-sm {{comp.PlatformName}}
+                    td.computeruser.hidden-xs.hidden-sm {{comp.LastLoggedInUser}}
+pagination-bar(create-permission="'Computer_Create_Edit'" create-item="vm.create()")

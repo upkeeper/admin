@@ -1,0 +1,9 @@
+.row.searchbar
+    .form-group.search
+        .input-group
+            input.form-control(placeholder="{{vm.searchbarvalue}}" ng-model="vm.searchvalue")
+            span.input-group-btn
+                button.btn.btn-primary.btn-icon
+                    i.fa.fa-search
+    .form-group.limitdropdown
+        select.form-control(ng-model="app.limit" ng-options="item.limit for item in app.listlimit" ng-change="setListLimit()")

@@ -1,0 +1,92 @@
+h3.page-header Client actions
+.row
+    .col-xs-6
+        .form-group
+            .input-group
+                select.form-control(ng-model="vm.selectedInstantFunction")
+                    option(value="") -- Select Action --
+                    option(ng-repeat="function in vm.instantFunctions" value="{{function.Key}}") {{function.Value}}
+                span.input-group-btn
+                    button.btn.btn-primary.btn-icon(ng-click="vm.runInstantFunction()")
+                        i.fa.fa-paper-plane
+    .col-xs-6.remotebuttons
+        a.btn.btn-primary(href="/Config/{{vm.computer.Name}}.rdp")
+            i.fa.fa-desktop.fa-2x()
+        a.btn.btn-primary(href="/Config/{{vm.computer.Name}}.cmd")
+            i.fa.fa-windows.fa-2x()
+                    
+h3.page-header Client information
+.row
+    .col-xs-2
+        .form-group
+            label Status
+            p {{vm.computer.ClientInformation.StatusText}}
+    .col-xs-2
+        .form-group
+            label Last Connection
+            p {{vm.computer.ClientInformation.LastConnection | date: 'yyyy-MM-dd hh:mm:ss'}}
+    .col-xs-2
+        .form-group
+            label Reported IP address
+            p {{vm.computer.ClientInformation.ReportedIPAddress}}
+    .col-xs-2
+        .form-group
+            label Logged in user
+            p {{vm.computer.ClientInformation.LoggedInUser}}
+    .col-xs-2
+        .form-group
+            label Client version
+            p {{vm.computer.ClientInformation.ClientVersion}}
+    .col-xs-2
+    
+h3.page-header General
+.row
+    .col-xs-6
+        .form-group
+            label Computer Name
+            input.form-control(ng-model="vm.computer.Name")
+        .form-group
+            label Serial Number
+            input.form-control(ng-model="vm.computer.SerialNumber")
+        .form-group
+            label Uuid
+            input.form-control(ng-model="vm.computer.Uuid" placeholder="Must be in uuid format: 000000000-1111-2222-3333-123456789012")
+        .form-group
+            label MAC Address
+            input.form-control(ng-model="vm.computer.MACAddress")
+        .form-group
+            label Hardware
+            select.form-control(ng-model="vm.computer.HardwareId")
+                option(ng-repeat="hardware in vm.hardwares" value="{{hardware.Key}}") {{hardware.Value}}
+        .form-group
+            label Platform
+            select.form-control(ng-model="vm.computer.PlatformId")
+                option(ng-repeat="platform in vm.platforms" value="{{platform.Key}}") {{platform.Value}}
+        .form-group
+            label Username
+            input.form-control(ng-model="vm.computer.UserName")
+        .form-group
+            label Location
+            input.form-control(ng-model="vm.computer.Location")
+        .form-group
+            label Assignment
+            select.form-control(ng-model="vm.computer.assignment")
+                option Disabled
+                option Normal
+                option Reinstall
+                option Reinstall from scratch
+                
+    .col-xs-6
+        .form-group
+            label Description
+            textarea.form-control(type="text" cols="50" rows="12" ng-model="vm.computer.Description")
+        .form-group.inventory
+            button.btn.btn-primary.btn-icon#getComputerSettings(type="button" value="Show Settings" title="Show Settings" data-toggle="modal" data-target="#computerMergedSettings" ng-click="vm.getMergedSettings()")
+                span Show Settings
+                i.fa.fa-cog
+        .form-group.inventory
+            button.btn.btn-primary.btn-icon#getComputerInventory(type="button" value="Show Inventory" title="Show Inventory" data-toggle="modal" data-target="#computerInventory" ng-click="vm.getHardwareInventory()")
+                span Inventory 
+                i.fa.fa-archive
+include ../../Shared/Modals/ComputerInventoryModal.jade
+include ../../Shared/Modals/ComputerMergedSettings.jade

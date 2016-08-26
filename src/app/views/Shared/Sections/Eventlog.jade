@@ -1,0 +1,25 @@
+h3.page-header Eventlog
+include ../Searchbar.jade
+.row
+    .col-xs-12
+        table.table.table-hover
+            thead
+                tr
+                    th Date
+                    th Level
+                    th Type
+                    th Computer Name
+                    th Application Name
+                    th Message
+            tbody
+                tr(dir-paginate="event in vm.events | filter:vm.searchvalue | itemsPerPage:app.limit.limit | orderBy:'-Date'")
+                    td {{event.Date | date:'yyyy-MM-dd HH:mm:ss'}}
+                    td {{event.Level}}
+                    td {{event.Type}}
+                    td {{event.ComputerName}}
+                    td {{event.ApplicationName}}
+                    td {{event.Message}}
+.row
+    .buttontoolbar.edittoolbar
+        .btn-group
+        dir-pagination-controls(max-size="5" boundary-links="true")

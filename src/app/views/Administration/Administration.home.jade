@@ -1,0 +1,23 @@
+.row
+    .start-left.col-xs-6
+        h3.page-header Messages
+        .messages(ng-repeat="message in vm.messages | limitTo:3")
+            .panel.panel-primary
+                .panel-heading
+                    h1.panel-title {{message.Title}}
+                        span.glyphicon.glyphicon-remove(title="Delete this message" ng-click="vm.deleteMessage(message.Id)")
+                .panel-body
+                    p {{message.Body}}
+                .panel-footer 
+                    p {{message.UserFullname}} {{message.Published | date:'yyyy-MM-dd hh:mm:ss'}}
+        include ../Home/MessageModal.jade
+        input(type="button" class="btn btn-success" value="Add message..." data-toggle="modal" data-target="#addMessage")        
+    .start-right.col-xs-6
+        h3.page-header Summary Environment
+        p Web server: {{vm.settings.WebVersion}}
+        p Local Path: 
+        p Local Address: 
+        br
+        p Database Server: {{vm.system.DatabaseServerName}}
+        p Database Server Version: {{vm.system.DatabaseServerVersion}}
+        p Database Server Name: {{vm.system.DatabaseName}}

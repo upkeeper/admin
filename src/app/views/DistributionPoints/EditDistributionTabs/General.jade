@@ -1,0 +1,17 @@
+h3.page-header General
+.row
+	.col-xs-6
+		.form-distribution( ng-class="{ 'has-error': form.name.$invalid }")
+			label Name
+			input.form-control(type="text" name="name" placeholder="Name" ng-model="vm.distribution.Name" required)
+		.form-distribution
+			label Location
+			input.form-control(type="text" ng-model="vm.distribution.Location")
+		.checkbox
+			label 
+				input(type="checkbox" ng-model="vm.distribution.Active")
+			span Active
+	.col-xs-6
+		.form-distribution
+			label Description
+			textarea.form-control(type="text" cols="50", rows="12", ng-model="vm.distribution.Description")

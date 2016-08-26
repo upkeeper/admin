@@ -1,0 +1,15 @@
+h3.page-header Disk
+.row
+    .col-xs-6
+        .form-group
+            label Service Partition Size
+            input.form-control(ng-model="vm.config.ServicePartitionSize")
+        .form-group
+            label Diskpart Install
+            textarea.form-control(type="text" cols="50", rows="12", ng-model="vm.config.DiskpartInstall")
+        .form-group
+            label Diskpart Reinstall
+            textarea.form-control(type="text" cols="50", rows="12", ng-model="vm.config.DiskpartReinstall")
+        .form-group
+            label Diskpart Drive Letters
+            textarea.form-control(type="text" cols="50", rows="12", ng-model="vm.config.DiskpartAssLetters")

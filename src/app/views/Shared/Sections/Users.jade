@@ -1,0 +1,19 @@
+h3.page-header Users
+include ../../Shared/Searchbar.jade
+.row
+    .col-xs-12
+        table.table.table-hover
+            thead
+                tr
+                    th()
+                        input(type="checkbox")
+                    th() Name
+                    th() Description
+
+                tbody
+                    tr(ng-repeat="user in vm.users | filter:vm.searchvalue | limitTo:app.limit.limit")
+                        td
+                            input(type="checkbox" ng-model="user.selected" ng-disabled="user.Inherited")
+                        td {{user.Name}}
+                        td {{user.Description}}
+        include ../Modals/UsersListModal.jade

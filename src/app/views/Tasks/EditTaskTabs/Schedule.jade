@@ -1,0 +1,97 @@
+h3.page-header Schedule
+.row
+    .col-xs-6
+        .form-group
+            label Schema Type
+            select.form-control(ng-model="vm.task.SchemaType.Name" ng-options="schema.Value as schema.Value for schema in vm.schemaTypes")
+div#every-day.datetimepicker(ng-show="vm.task.SchemaType.Name === 'Every day' || vm.task.SchemaType.Name === 'Every workday'")
+    h3.page-header Schedule Time
+    .row
+        .col-xs-6
+            .form-group
+                label Time
+                input.form-control(ng-model="vm.task.StartTime" bs-timepicker)
+            .form-group
+                label Random Offset
+                input.form-control(ng-model="vm.task.fromDate.StartTimeMaxOffset" type="number" placeholder="Minutes" min="0")
+    h3.page-header Schedule Range
+    .row
+        .col-xs-3
+            .form-group
+                label Start Date
+                input.form-control(ng-model="vm.task.SchemaStartDate" placeholder="Start" bs-datepicker)
+        .col-xs-3
+            .form-group
+                label End Date
+                input.form-control(ng-model="vm.task.SchemaEndDate" placeholder="End" bs-datepicker)
+
+div#once.datetimepicker(ng-show="vm.task.SchemaType.Name === 'Once'")
+    h3.page-header Schedule Time
+    .row
+        .col-xs-6
+            .form-group
+                label Date
+                input.form-control(ng-model="vm.task.fromDate" placeholder="Start" bs-datepicker)
+            .form-group
+                label Time
+                input.form-control(ng-model="vm.task.StartTime" bs-timepicker)
+            .form-group
+                label Random Offset
+                input.form-control(ng-model="vm.task.fromDate.StartTimeMaxOffset" type="number" placeholder="Minutes" min="0")
+
+div#specificweek.datetimepicker(ng-show="vm.task.SchemaType.Name === 'Specific days every month' || vm.task.SchemaType.Name === 'Specific days every week'")
+    h3.page-header Schedule Time
+    .row
+        .col-xs-6
+            .form-group
+                label Time
+                input.form-control(ng-model="vm.task.StartTime" bs-timepicker)
+            .form-group
+                label Random Offset
+                input.form-control(ng-model="vm.task.fromDate.StartTimeMaxOffset" type="number" placeholder="Minutes" min="0")
+    div#days-of-week(ng-show="vm.task.SchemaType.Name === 'Specific days every week'")
+        h3.page-header Days of Week
+        .row
+            .col-xs-6
+                label.checkbox-inline
+                    input(type="checkbox")
+                    span Monday
+                label.checkbox-inline 
+                    input(type="checkbox")
+                    span Tuesday
+                label.checkbox-inline 
+                    input(type="checkbox")
+                    span Wednesday
+                label.checkbox-inline 
+                    input(type="checkbox")
+                    span Thursday
+                label.checkbox-inline 
+                    input(type="checkbox")
+                    span Friday
+                label.checkbox-inline 
+                    input(type="checkbox")
+                    span Saturday
+                label.checkbox-inline 
+                    input(type="checkbox")
+                    span Sunday
+        br
+    div#days-of-month(ng-show="vm.task.SchemaType.Name === 'Specific days every month'")
+        h3.page-header Days of Month
+        .row
+            .col-xs-6
+                table.table
+                    tbody
+                        tr
+                            td(ng-repeat="day in vm.days")
+                                input(type="checkbox")
+                                span {{day}}
+        h3.page-header Schedule Range
+        .row
+            .col-xs-3
+                .form-group
+                    label Start Date
+                    input.form-control(ng-model="vm.task.SchemaStartDate" placeholder="Start" bs-datepicker)
+            .col-xs-3
+                .form-group
+                    label End Date
+                    input.form-control(ng-model="vm.task.SchemaEndDate" placeholder="End" bs-datepicker)

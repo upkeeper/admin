@@ -1,0 +1,36 @@
+h3.page-header Client Settings
+.row
+    .col-xs-6
+        .checkbox
+            label 
+                input(type="checkbox" ng-model="vm.config.WSUS")
+            span WSUS
+        .form-group
+            label Client Update Frequency
+            input.form-control(ng-model="vm.config.ClientUpdateFrequency" type="number")
+h3.page-header Wake On Lan
+.row
+    .col-xs-6
+        .checkbox
+            label 
+                input(type="checkbox" ng-model="vm.config.WOLBroadCast")
+            span WOL Broadcast
+        .form-group
+            label WOL Port
+            input.form-control(ng-model="vm.config.WOLPort")
+h3.page-header Applications
+.row
+    .col-xs-6
+        .checkbox
+            label 
+                input(type="checkbox" ng-model="vm.config.PrioritizeSMBShares")
+            span Prioritize SMB Shares
+        .form-group
+            label Application Staging Area
+            input.form-control(ng-model="vm.config.ApplicationStagingArea")
+h3.page-header Service OS
+.row
+    .col-xs-6
+        .form-group
+            label Service OS
+            input.form-control(ng-model="vm.config.Passphrase")

@@ -1,0 +1,33 @@
+h3.page-header Application Computers
+include ../../Shared/Searchbar.jade
+.row
+	.col-xs-12
+		table.table.table-hover
+			thead
+				tr
+					th()
+						input(type="checkbox" ng-click="vm.checkAll(vm.computers)" ng-model="vm.selectAll")
+					th() Computers
+					th() Groups
+					th() Hardware
+					th() App Status
+					th() Name
+					th() Description
+				
+			tbody
+				tr(ng-repeat="computer in vm.computers | filter:vm.searchvalue | limitTo:app.limit.limit")
+					td
+						input(type="checkbox" ng-model="computer.selected")
+					td 
+						i.fa.fa-check(ng-show="computer.Chosen")
+						i.fa.fa-minus(ng-show="!computer.Chosen")
+					td 
+						i.fa.fa-check(ng-show="computer.Inherited")
+						i.fa.fa-minus(ng-show="!computer.Inherited")
+					td 
+						i.fa.fa-check(ng-show="computer.FromHardware")
+						i.fa.fa-minus(ng-show="!computer.FromHardware")
+					td {{computer.Status}}
+					td {{computer.Name}}
+					td {{computer.Description}}
+		include ../../Shared/Modals/ComputersListModal.jade

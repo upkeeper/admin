@@ -1,0 +1,31 @@
+.modal.fade#addMessage(tabindex="-1" role="dialog" aria-labelledby="myModalLabel")
+	.modal-dialog(role="document")
+		.modal-content
+			form#dlgForm
+				.modal-header
+					button.close(type="button" data-dismiss="modal" aria-label="Close")
+						span(aria-hidden="true")
+					h4.modal-title#gridSystemModalLabel Message
+				.modal-body
+					.form-group
+						label Title
+						input.form-control(ng-model="vm.newMessage.Title")
+					.form-group
+						label Body
+						input.form-control(ng-model="vm.newMessage.Body")
+					.checkbox
+						label
+							input(type="checkbox" ng-model="vm.newMessage.Urgent")
+						span Urgent (Message is shown within 5 minutes and in center of the screen)
+					label Show Message
+					.radio
+						label
+						input(type="radio" ng-model="vm.newMessage.ShowClients" ng-value="false")
+						span Only in this web
+					.radio
+						label
+						input(type="radio" ng-model="vm.newMessage.ShowClients" ng-value="true")
+						span On all computers
+				.modal-footer
+					input.btn.btn-primary(title="Save" value="Save" type="button" ng-click="vm.saveMessage()" data-dismiss="modal")
+					button.btn.btn-default(data-dismiss="modal") Close

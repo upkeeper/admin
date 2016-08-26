@@ -1,0 +1,35 @@
+.row
+    .col-xs-12
+        .buttontoolbar
+            .btn-group
+                input.btn.btn-success#addUsersBtn(type="button" value="Add Users..." title="Add User" data-toggle="modal" data-target="#addUsers" ng-click="vm.getAddUsers()")
+                input.btn.btn-danger(type="button" value="Remove" ng-click="vm.removeUser()")
+                
+.modal.fade#addUsers(tabindex="-1" role="dialog" aria-labelledby="myModalLabel")
+    .modal-dialog(role="document")
+        .modal-content
+            form#dlgForm
+                .modal-header
+                    button.close(type="button" data-dismiss="modal" aria-label="Close")
+                        span(aria-hidden="true")
+                    h4.modal-title#gridSystemModalLabel Add user(s)
+                    include ModalSearchHeader.jade
+                .modal-body
+                    table.table.table-hover
+                        thead
+                            tr
+                                th
+                                    input(type="checkbox")
+                                th Name
+                                th Description
+                        tbody
+                            tr(dir-paginate="user in vm.addUsers | filter: vm.modalsearchvalue | itemsPerPage:10")
+                                td
+                                    input(type="checkbox" ng-model="user.selected")
+                                td {{user.Name}}
+                                td {{users.Description}}
+                .modal-footer
+                    .modal-footer-buttons
+                        input.btn.btn-success(title="Add User" value="Add User" type="button" ng-click="vm.addUser()" data-dismiss="modal")
+                        button.btn.btn-default(data-dismiss="modal") Close
+                    dir-pagination-controls(max-size="5" boundary-links="true")

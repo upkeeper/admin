@@ -1,0 +1,6 @@
+h3.page-header Dynamic properties
+.row
+    .col-xs-6
+        .form-group( ng-class="{ 'has-error': form.name.$invalid }")
+            label Name
+            textarea.form-control(type="text" cols="50", rows="12", ng-model="vm.group.Dynamic")

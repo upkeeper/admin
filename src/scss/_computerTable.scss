@@ -1,0 +1,61 @@
+.computertable {
+    .computerstatus {
+        width: 25px;
+        cursor: pointer;
+    }
+    .computerapplication {
+        width: 25px;
+        cursor: pointer;
+    }
+    .computername {
+        //width: 400px;
+        cursor: pointer;
+    }
+    .computeronline {
+        width: 25px;
+        cursor: pointer;
+    }
+    .computerlastconnection {
+        //width: 150px;
+        cursor: pointer;
+    }
+    .computermac {
+        //width: 150px;
+        cursor: pointer;
+    }
+    .computerip {
+        //width: 150px;
+        cursor: pointer;
+    }
+    .computerhardware {
+        //width: 250px;
+        cursor: pointer;
+    }
+    .computerplatform {
+        //width: 220px;
+        cursor: pointer;
+    }
+    .computeruser {
+        //width: 100px;
+        cursor: pointer;
+    }
+    .tablecheckbox {
+        width: 25px;
+    }
+}
+
+[rotate-flip] {
+    -webkit-transition: transform ease 250ms;
+    -moz-transition: transform ease 250ms;
+    -o-transition: transform ease 250ms;
+    -ms-transition: transform ease 250ms;
+    transition: transform ease 250ms;
+}
+
+[rotate-flip].rotated {
+    -webkit-transform: rotate(180deg);
+    -moz-transform: rotate(180deg);
+    -o-transform: rotate(180deg);
+    -ms-transform: rotate(180deg);
+    transform: rotate(180deg);
+}

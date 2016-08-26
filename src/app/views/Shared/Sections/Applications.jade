@@ -1,0 +1,38 @@
+h3.page-header Applications
+include ../../Shared/Searchbar.jade
+.row
+	.col-xs-12
+		table.table.table-hover
+			thead
+				tr
+					th()
+						input(type="checkbox")
+					th()
+						i.fa.fa-desktop(data-placement="top" title="Assigned to computer")
+					th()
+						i.fa.fa-group(data-placement="top" title="Inherited from group(s)")
+					th()
+						i.fa.fa-archive(data-placement="top" title="")
+					th() App Status
+					th() Name
+					th() Description
+				
+			tbody
+				tr(ng-repeat="application in vm.applications | filter:vm.searchvalue | limitTo:app.limit.limit")
+					td
+						input(type="checkbox" ng-model="application.selected"  ng-disabled="application.Inherited || application.FromHardware")
+					td
+						i.fa.fa-check(ng-show="application.Chosen")
+						i.fa.fa-minus(ng-show="!application.Chosen")
+					td
+						i.fa.fa-check(ng-show="application.Inherited")
+						i.fa.fa-minus(ng-show="!application.Inherited")
+					td
+						i.fa.fa-check(ng-show="application.FromHardware")
+						i.fa.fa-minus(ng-show="!application.FromHardware")
+					td
+						i.fa.fa-check(ng-show="application.Status == 1")
+						i.fa.fa-minus(ng-show="application.Status == 0")
+					td {{application.Name}}
+					td {{application.Description}}
+		include ../../Shared/Modals/ApplicationsListModal.jade

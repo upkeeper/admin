@@ -1,0 +1,57 @@
+h4.page-header Image information
+.row
+    .col-xs-2
+        form-group
+            label Image Size 
+    .col-xs-2
+        form-group
+            label Id: 
+
+h3.page-header General
+.row
+    .col-xs-6
+        .form-group
+            label Platform Family
+            select.form-control(ng-model="vm.platform.FamilyId" ng-options="condition.Id as condition.Name for condition in vm.PlatformFamily")
+        .form-group
+            label Architecture
+            select.form-control(ng-model="vm.platform.Architecture" ng-options="index*1+1 as condition for (index, condition) in vm.Architectures")
+            
+        .form-group
+            label Name
+            input.form-control(type="text" name="name"  ng-model="vm.platform.Name" required)
+        .form-group
+            label Setup Command
+            input.form-control(type="text" name="name"  ng-model="vm.platform.SetupCommand")
+        .form-group
+            label Setup Parameters
+            input.form-control(type="text" name="name"  ng-model="vm.platform.SetupParameters")
+        .form-group
+            label Path
+            input.form-control(type="text" name="name"  ng-model="vm.platform.Path" required)
+        .form-group
+            label Type
+            select.form-control(ng-model="vm.platform.Type" ng-options="index*1 as condition for (index, condition) in vm.Types")
+            
+        .checkbox
+            label 
+                    input(type="checkbox" ng-model="vm.platform.InstallOffline")
+            span Image can be applied offsite
+        .form-group
+            label Settings format
+            select.form-control(ng-model="vm.platform.SettingsFormat" ng-options="index*1 as condition for (index, condition) in vm.SettingFormats")
+        .form-group
+            label Install Time(Avarage: 0)
+            input.form-control(ng-model="vm.platform.DisplayInstallTime")
+        .checkbox
+            label 
+                    input(type="checkbox" ng-model="vm.platform.Visible")
+            span Visible
+        
+    .col-xs-6
+        .form-group
+            label Description
+            textarea.form-control(type="text" cols="50", rows="12", ng-model="vm.platform.Description")
+        .form-group
+            label Category
+            select.form-control(ng-model="vm.platform.CategoryId" ng-options="condition.Id as condition.Name for condition in vm.categories")

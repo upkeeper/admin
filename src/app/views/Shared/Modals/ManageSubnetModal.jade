@@ -1,0 +1,39 @@
+.modal.fade#addsubnetModal(tabindex="-1" role="dialog" aria-labelledby="myModalLabel")
+        .modal-dialog(role="document")
+            .modal-content
+                form#dlgForm
+                    .modal-header
+                        button.close(type="button" data-dismiss="modal" aria-label="Close")
+                            span(aria-hidden="true")
+                        h4.modal-title#gridSystemModalLabel Manage IPv4 Subnets
+                    .modal-body
+                        .form-group
+                            label IP Address
+                            input(type="text" class="form-control" ng-model="vm.subnet.IPv4Address")
+                        .form-group
+                            label Netmask
+                            input(type="text" class="form-control" ng-model="vm.subnet.IPv4Mask")
+                    .modal-footer
+                        .modal-footer-buttons
+                            input.btn.btn-success(title="Save" value="Save" type="button" data-dismiss="modal" ng-click="vm.saveSubnet()")
+                            button.btn.btn-default(data-dismiss="modal") Close
+
+.modal.fade#editsubnetModal(tabindex="-1" role="dialog" aria-labelledby="myModalLabel")
+        .modal-dialog(role="document")
+            .modal-content
+                form#dlgForm
+                    .modal-header
+                        button.close(type="button" data-dismiss="modal" aria-label="Close")
+                            span(aria-hidden="true")
+                        h4.modal-title#gridSystemModalLabel Manage IPv4 Subnets
+                    .modal-body
+                        .form-group
+                            label IP Address
+                            input(type="text" class="form-control" ng-model="vm.selectedSubnet.IPv4Address")
+                        .form-group
+                            label Netmask
+                            input(type="text" class="form-control" ng-model="vm.selectedSubnet.IPv4Mask")
+                    .modal-footer
+                        .modal-footer-buttons
+                            input.btn.btn-success(title="Save" value="Save" type="button" data-dismiss="modal" ng-click="vm.updateSubnet()")
+                            button.btn.btn-default(data-dismiss="modal") Close

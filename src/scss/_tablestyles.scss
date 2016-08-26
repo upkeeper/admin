@@ -1,0 +1,71 @@
+@import "_computerTable.scss";
+
+.tablebutton{
+	width:10px;
+}
+
+table{
+	tr{
+		cursor:pointer;
+		height:50px;
+		td{
+			vertical-align: middle !important;
+		}
+	}
+}
+
+form{
+	.tab-content{
+		.searchbar{
+			margin-left:0;
+			margin-right:0;
+		}
+	}
+}
+
+.searchbar{
+	.search{
+		width:80%;
+		float:left;
+	}
+	select{
+		width:18%;
+		float:right;
+	}
+}
+
+.edittoolbar{
+	padding-right:15px;
+}
+
+.pagination{
+	margin-top: 0;
+	margin-bottom: 10px;
+	float:right;
+	
+	.active{
+		a,a:hover,a:focus{
+			background-color:$darkblue;
+			border-color:$darkblue;
+		}
+	}
+	li{
+	  a, span{
+		color:$darkblue;
+		}  
+	}
+}
+
+.table-striped{
+	tbody{
+		tr:nth-of-type(odd){
+			background-color:rgba(205,217,224,0.3);
+		}
+	}
+}
+
+#days-of-month{
+    td{
+        border-top:0;
+    }
+}

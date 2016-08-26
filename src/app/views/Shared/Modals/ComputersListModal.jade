@@ -1,0 +1,35 @@
+.row
+    .col-xs-12
+        .buttontoolbar
+            .btn-group
+                input.btn.btn-success#addComputerBtn(type="button" value="Add Computer..." title="Add Computer" data-toggle="modal" data-target="#addComputer" ng-click="vm.getAddApplicationComputers()")
+                input.btn.btn-danger(type="button" value="Remove..." ng-click="vm.removeComputer()")
+                input.btn.btn-danger(type="button" value="Deny..." ng-click="vm.denyComputer()")
+.modal.fade#addComputer(tabindex="-1" role="dialog" aria-labelledby="myModalLabel")
+    .modal-dialog(role="document")
+        .modal-content
+            form#dlgForm
+                .modal-header
+                    button.close(type="button" data-dismiss="modal" aria-label="Close")
+                        span(aria-hidden="true")
+                    h4.modal-title#gridSystemModalLabel Add computer(s) to application
+                    include ModalSearchHeader.jade
+                .modal-body
+                    table.table.table-hover
+                        thead
+                            tr
+                                th
+                                    input(type="checkbox")
+                                th Name
+                                th Description
+                        tbody
+                            tr(dir-paginate="computer in vm.addComputers | filter: vm.modalsearchvalue | itemsPerPage:10")
+                                td
+                                    input(type="checkbox" ng-model="computer.selected")
+                                td {{computer.Name}}
+                                td {{computer.Description}}					
+                .modal-footer
+                    .modal-footer-buttons
+                        input.btn.btn-success(title="Add computers" value="Add computers" type="button" ng-click="vm.addComputer()" data-dismiss="modal")
+                        button.btn.btn-default(data-dismiss="modal") Close
+                    dir-pagination-controls(max-size="5" boundary-links="true")

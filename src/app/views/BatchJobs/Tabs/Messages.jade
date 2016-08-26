@@ -1,0 +1,6 @@
+h3.page-header Messages
+.row
+    .col-xs-12
+        ul
+            li(ng-repeat="message in vm.messages") {{message.Date | date: 'yyyy-MM-dd hh:mm:ss'}} {{message.Message}}
+        h3(ng-if="!vm.messages") No messages

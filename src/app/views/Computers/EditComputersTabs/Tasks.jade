@@ -1,0 +1,30 @@
+h3.page-header Tasks
+include ../../Shared/Searchbar.jade
+.row
+    .col-xs-12
+        table.table.table-hover.tasktable
+            thead
+                tr
+                    th.computercheck()
+                        input(type="checkbox")
+                    th.computerstatus()
+                        i.fa.fa-desktop(data-placement="top" title="Assigned to computer")
+                    th.computergroup()
+                        i.fa.fa-group(data-placement="top" title="Inherited from group(s)")
+                    th() Name
+                    th() Description
+
+            tbody
+                tr(ng-repeat="task in vm.tasks | filter:vm.searchvalue | limitTo:app.limit.limit")
+                    td.computercheck
+                        input(type="checkbox" ng-model="task.selected" ng-disabled="task.Inherited")
+                    td.computerstatus
+                        i.fa.fa-check(ng-show="task.Chosen")
+                        i.fa.fa-minus(ng-show="!task.Chosen")
+                    td.computergroup
+                        i.fa.fa-check(ng-show="task.Inherited")
+                        i.fa.fa-minus(ng-show="!task.Inherited")
+                    td {{task.Name}}
+                    td {{task.Description}}
+
+        include ../../Shared/Modals/TasksListModal.jade

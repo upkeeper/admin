@@ -1,0 +1,20 @@
+.row
+    div(role="tabpanel")
+        ul.nav.nav-tabs(role="tablist")
+                li.active(role="presentation")
+                    a(data-target="#general" aria-controls="home" role="tab" data-toggle="tab") General
+                li(role="presentation")
+                    a(data-target="#settings" aria-controls="home" role="tab" data-toggle="tab" ng-click="vm.initSettings()") Settings
+.row
+    form(name="form" novalidate  ng-submit="vm.save()")
+        .tab-content
+            .tab-pane.fade.in.active#general
+                include ../Platforms/EditPlatformTabs/General.jade
+                .row
+                    .col-xs-12
+                        .buttontoolbar
+                            .btn-group
+                                input.btn.btn-success(type="submit" value="Save" ng-disabled="form.$invalid")
+                                input.btn.btn-danger(type="button" value="Delete" ng-click="vm.delete()" ng-disabled="!app.HasPermission('Platform_Delete')" delete-item="vm.delete()")
+            .tab-pane.fade#settings
+                include ../Platforms/EditPlatformTabs/Settings.jade

@@ -1,0 +1,24 @@
+.row
+    div(role="tabpanel")
+        ul.nav.nav-tabs(role="tablist")
+                li.active(role="presentation")
+                    a(data-target="#general" aria-controls="home" role="tab" data-toggle="tab") General
+                li(role="presentation")
+                    a(data-target="#schedule" aria-controls="home" role="tab" data-toggle="tab") Schedule
+                li(role="presentation" ng-show="app.HasPermission('Task_Manage_Computers')")
+                    a(data-target="#computers" aria-controls="home" role="tab" data-toggle="tab") Computers
+                li(role="presentation" ng-show="app.HasPermission('Task_Manage_Groups')")
+                    a(data-target="#groups" aria-controls="home" role="tab" data-toggle="tab") Groups
+.row
+    form(name="form" novalidate  ng-submit="vm.save()")
+        .tab-content
+            .tab-pane.fade.in.active#general
+                include ../Tasks/EditTaskTabs/General.jade
+                save-button(delete-permission="'Task_Delete'" delete-item="vm.delete()")
+            .tab-pane.fade#schedule
+                include ../Tasks/EditTaskTabs/Schedule.jade
+                save-button(delete-permission="'Task_Delete'" delete-item="vm.delete()")
+            .tab-pane.fade#computers
+                include ../Shared/Sections/Computers.jade
+            .tab-pane.fade#groups
+                include ../Shared/Sections/Groups.jade

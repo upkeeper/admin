@@ -1,0 +1,14 @@
+h3.page-header Application Requests
+.row
+    .col-xs-12
+        table.table.table-hover
+            thead
+                tr
+                    th
+                        input(type="checkbox")
+                    th Name
+            tbody
+                tr(ng-repeat="ar in vm.ars")
+                    td()
+                        input(type="checkbox" ng-model="ar.selected")
+                    td {{ar.application.Name}}

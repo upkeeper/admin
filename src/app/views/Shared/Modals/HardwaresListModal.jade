@@ -1,0 +1,35 @@
+.row
+    .col-xs-12
+        .buttontoolbar
+            .btn-group
+                input.btn.btn-success#addTasksBtn(type="button" value="Add Hardware..." title="Add Hardware" data-toggle="modal" data-target="#addHardwares" ng-click="vm.getHardwares()")
+                input.btn.btn-danger(type="button" value="Remove" ng-click="vm.removeGroup()")
+                
+.modal.fade#addHardwares(tabindex="-1" role="dialog" aria-labelledby="myModalLabel")
+    .modal-dialog(role="document")
+        .modal-content
+            form#dlgForm
+                .modal-header
+                    button.close(type="button" data-dismiss="modal" aria-label="Close")
+                        span(aria-hidden="true")
+                    h4.modal-title#gridSystemModalLabel Add hardware(s)
+                    include ModalSearchHeader.jade
+                .modal-body
+                    table.table.table-hover
+                        thead
+                            tr
+                                th
+                                    input(type="checkbox")
+                                th Name
+                                th Description
+                        tbody
+                            tr(dir-paginate="hardware in vm.addHardwares | filter: vm.modalsearchvalue | itemsPerPage:10")
+                                td
+                                    input(type="checkbox" ng-model="Task.selected")
+                                td {{hardware.Name}}
+                                td {{hardware.Description}}
+                .modal-footer
+                    .modal-footer-buttons
+                        input.btn.btn-success(title="Add Task" value="Add Hardware" type="button" ng-click="vm.addHardwares()" data-dismiss="modal")
+                        button.btn.btn-default(data-dismiss="modal") Close
+                    dir-pagination-controls(max-size="5" boundary-links="true")

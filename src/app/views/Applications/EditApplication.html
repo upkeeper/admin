@@ -1,0 +1,53 @@
+<div class="row">
+    <div role="tabpanel">
+        <ul class="nav nav-tabs" role="tablist">
+            <li class="active" role="presentation">
+                <a data-target="#general" aria-controls="home" role="tab" data-toggle="tab">General</a>
+            </li>
+            <li role="presentation">
+                <a data-target="#advanced" aria-controls="home" role="tab" data-toggle="tab">Advanced</a>
+            </li>
+        </ul>
+    </div>
+</div>
+	div(role="tabpanel")
+		ul.nav.nav-tabs(role="tablist")
+			li.active(role="presentation")
+				a(data-target="#general" aria-controls="home" role="tab" data-toggle="tab") General
+			li(role="presentation")
+				a(data-target="#advanced" aria-controls="home" role="tab" data-toggle="tab") Advanced
+			li(role="presentation")
+				a(data-target="#requiredapp" aria-controls="home" role="tab" data-toggle="tab") Required Applications
+			li(role="presentation")
+				a(data-target="#conflictingapp" aria-controls="home" role="tab" data-toggle="tab") Conflicting Applications
+			li(role="presentation" ng-show="app.Application_Manage_Computers()")
+				a(data-target="#computers" aria-controls="home" role="tab" data-toggle="tab") Computers
+			li(role="presentation")
+				a(data-target="#groups" aria-controls="home" role="tab" data-toggle="tab") Groups
+			li(role="presentation")
+				a(data-target="#hardware" aria-controls="home" role="tab" data-toggle="tab") Hardware
+			li(role="presentation")
+				a(data-target="#eventlog" aria-controls="home" role="tab" data-toggle="tab") Eventlog
+
+		
+.row
+	form(name="form" novalidate  ng-submit="vm.save()")
+		.tab-content
+			.tab-pane.fade.in.active#general
+				include ../Applications/EditApplicationsTabs/General.jade
+				include ../Shared/Savebutton.jade
+			.tab-pane.fade#advanced
+				include ../Applications/EditApplicationsTabs/Advanced.jade
+				include ../Shared/Savebutton.jade
+			.tab-pane.fade#requiredapp
+				include ../Applications/EditApplicationsTabs/RequiredApps.jade
+			.tab-pane.fade#conflictingapp
+				include ../Applications/EditApplicationsTabs/ConflictingApps.jade
+			.tab-pane.fade#computers
+				include ../Applications/EditApplicationsTabs/ApplicationComputers.jade
+			.tab-pane.fade#groups
+				include ../Shared/Sections/Groups.jade
+			.tab-pane.fade#hardware
+				include ../Shared/Sections/Hardwares.jade
+			.tab-pane.fade#eventlog
+				include ../Shared/Sections/Eventlog.jade

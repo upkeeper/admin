@@ -1,0 +1,23 @@
+.row
+    div(role="tabpanel")
+        ul.nav.nav-tabs(role="tablist")
+                li.active(role="presentation")
+                    a(data-target="#general" aria-controls="home" role="tab" data-toggle="tab") General
+                li(role="presentation")
+                    a(data-target="#settings" aria-controls="home" role="tab" data-toggle="tab" ng-click="vm.initSettings()") Settings
+                li(role="presentation")
+                    a(data-target="#configuration" aria-controls="home" role="tab" data-toggle="tab") Configuration
+                li(role="presentation" ng-show="app.HasPermission('Hardware_Manage_Applications')")
+                    a(data-target="#applications" aria-controls="home" role="tab" data-toggle="tab") Applications
+.row
+    form(name="form" novalidate  ng-submit="vm.save()")
+        .tab-content
+            .tab-pane.fade.in.active#general
+                include ../Hardware/EditHardwareTabs/General.jade
+                save-button(delete-permission="'Hardware_Delete'" delete-item="vm.delete()")
+            .tab-pane.fade#settings
+                include ../Shared/Sections/Settings.jade
+            .tab-pane.fade#configuration
+                include ../Shared/Sections/Configuration.jade
+             .tab-pane.fade#applications
+                include ../Shared/Sections/GroupApplications.jade

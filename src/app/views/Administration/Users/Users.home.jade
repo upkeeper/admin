@@ -1,0 +1,14 @@
+include ../../Shared/Searchbar.jade
+.row
+    table.table.table-hover.table-striped.grouptable
+        thead
+            tr
+                th Name
+                th Full Name
+                th Description
+        tbody
+            tr(dir-paginate="user in vm.users | filter:vm.searchvalue | itemsPerPage:app.limit.limit")
+                td(ng-click="vm.editUser(user)") {{user.UserName}}
+                td(ng-click="vm.editUser(user)") {{user.Name}}
+                td(ng-click="vm.editUser(user)") {{user.Description}}
+include ../../Shared/Indexbuttonbar.jade

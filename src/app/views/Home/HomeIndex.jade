@@ -1,0 +1,17 @@
+.row
+	.start-left.col-xs-6
+		h3.page-header Messages
+		.messages(ng-repeat="message in vm.messages | limitTo:3")
+			.panel.panel-primary
+				.panel-heading
+					h1.panel-title {{message.Title}}
+						span.glyphicon.glyphicon-remove(title="Delete this message" ng-click="vm.deleteMessage(message.Id)")
+				.panel-body
+					p {{message.Body}}
+				.panel-footer 
+					p {{message.UserFullname}} {{message.Published | date:'yyyy-MM-dd hh:mm:ss'}}
+		include ../Home/MessageModal.jade
+		input(type="button" class="btn btn-success" value="Add message..." data-toggle="modal" data-target="#addMessage")        
+	.start-right.col-xs-6
+		h3.page-header Summary
+		canvas#bar.chart.chart-bar(chart-labels="vm.summarylabels" chart-legend="true" chart-series="vm.summaryseries" chart-data="vm.summarydata")

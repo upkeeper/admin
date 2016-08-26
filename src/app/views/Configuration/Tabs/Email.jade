@@ -1,0 +1,38 @@
+h3.page-header Email configuration
+.row
+    .col-xs-6
+        .form-group
+            label SMTP Server
+            input.form-control(ng-model="vm.config.SMTPServer")
+        .form-group
+            label SMTP Server Port
+            input.form-control(ng-model="vm.config.SMTPPort")
+        .form-group
+            label SMTP Server Username
+            input.form-control(ng-model="vm.config.SMTPUsername")
+        .form-group
+            label SMTP Server Password
+            input.form-control(ng-model="vm.config.SMTPPassword")
+    .col-xs-6
+        .form-group
+            label From Addresses
+            input.form-control(ng-model="vm.config.EmailFromAddress")
+            
+h3.page-header Enabled notification email
+.row
+    .col-xs-6
+        .form-group
+            label Subject
+            input.form-control()
+        .form-group
+            label Email
+            textarea.form-control()
+h3.page-header Enabled request application email
+.row
+    .col-xs-6
+        .form-group
+            label Subject
+            input.form-control()
+        .form-group
+            label Body
+            textarea.form-control()

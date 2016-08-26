@@ -1,0 +1,15 @@
+.modal.fade#setOrganization(tabindex="-1" role="dialog" aria-labelledby="myModalLabel")
+        .modal-dialog.modal-sm(role="document")
+            .modal-content
+                form#dlgForm
+                    .modal-header
+                        button.close(type="button" data-dismiss="modal" aria-label="Close")
+                            span(aria-hidden="true")
+                        h4.modal-title#gridSystemModalLabel Choose organization
+                    .modal-body
+                        select.form-control
+                            option(ng-repeat="organization in organizations" ng-model="selectedOrganization") {{organization.Name}}
+                .modal-footer
+                    .modal-footer-buttons
+                        input.btn.btn-success(title="Set organization" value="Set organization" type="button" data-dismiss="modal")
+                        button.btn.btn-default(data-dismiss="modal") Close

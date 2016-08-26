@@ -1,0 +1,12 @@
+.modal-dialog{
+	margin-top: $topbarheight + 50;
+}
+.modal-footer-buttons{
+    float:left;
+}
+
+#computerInventory{
+    div[role="tabpanel"]{
+        margin-left:0;
+    }
+}

@@ -1,0 +1,118 @@
+h4.page-header Package information
+.row
+    .col-xs-2
+        .form-group
+            label Last update: 
+            p {{vm.application.PackageDate |  date: 'yyyy-MM-dd HH:mm:ss'}}
+    .col-xs-2
+        .form-group
+            label Id: 
+            p {{vm.application.PackageId}}
+.row
+    .col-xs-2
+        .form-group.inventory
+            button.btn.btn-primary.btn-icon#getComputerInventory(type="button" value="Update Package")
+                span Update Package
+                i.fa.fa-refresh
+        
+
+h3.page-header General
+
+.row
+    .col-xs-6
+        .form-group( ng-class="{ 'has-error': form.name.$invalid }")
+            label Name
+            input.form-control(type="text" name="name" placeholder="Name" ng-model="vm.application.Name" required)
+        .form-group
+            label Version
+            input.form-control(type="text" name="version" ng-model="vm.application.Version")
+        .form-group( ng-class="{ 'has-error': form.publishtime.$invalid }")
+            label Publish Time
+            .input-group.date#datetimepicker2
+                input.form-control(type="text" ng-model="vm.application.PublishTime | date:'yyyy-MM-dd HH:mm'")
+                span.input-group-addon
+                    span.glyphicon.glyphicon-calendar
+            
+        .form-group
+            label Priority
+            input.form-control(type="text" ng-model="vm.application.Priority")
+        .form-group( ng-class="{ 'has-error': form.path.$invalid }")
+            label Path
+            input.form-control(type="text" name="path" ng-model="vm.application.Path" required)
+        .form-group
+            label License
+            input.form-control(type="text" ng-model="vm.application.License")
+    .col-xs-6
+        .form-group
+            label Description
+            textarea.form-control(type="text" cols="50", rows="12", ng-model="vm.application.Description")
+        .checkbox
+            label 
+                input(type="checkbox" ng-model="vm.application.KeepSourceAtClient")
+            span Keep source files at client
+        .checkbox
+            label 
+                input(type="checkbox" ng-model="vm.application.ClientSelectable")
+            span User selectable
+        .checkbox
+            label 
+                input(type="checkbox" ng-model="vm.application.SelectableIfEnoughLicenses")
+            span Selectable if enough licenses
+        .checkbox
+            label 
+                input(type="checkbox" ng-model="vm.application.Limited")
+            span Limited
+            
+h3.page-header Install properties
+.row
+    .col-xs-6
+        .form-group( ng-class="{ 'has-error': form.installcommand.$invalid }")
+            label Command
+            input.form-control(type="text" name="installcommand" ng-model="vm.application.InstallCommand" required)
+        .form-group
+            label Install
+            select.form-control(ng-model="vm.application.InstallConditions" ng-options="index*1 as condition for (index, condition) in vm.InstallConditions")
+        .form-group
+            label Reboot
+            select.form-control(ng-model="vm.application.InstallReboot" ng-options="index*1 as condition for (index, condition) in vm.RebootConditions")
+
+    .col-xs-6
+        .form-group
+            label Install time (minutes)
+            input.form-control(type="text" ng-model="vm.application.DisplayInstallTime")
+        .form-group
+            label Parameters
+            input.form-control(ng-model="vm.application.InstallParameters")
+        .checkbox
+            label 
+                input(type="checkbox" ng-model="vm.application.InstallUserInteraction")
+            span User Interaction
+
+h3.page-header Uninstall properties
+.row
+    .col-xs-6
+        .form-group( ng-class="{ 'has-error': form.uninstallcommand.$invalid }")
+            label Command
+            input.form-control(type="text" name="uninstallcommand" ng-model="vm.application.UninstallCommand" required)
+        .form-group
+            label Uninstall
+            select.form-control(ng-model="vm.application.UninstallConditions" ng-options="index*1 as condition for (index, condition) in vm.InstallConditions")
+        .form-group
+            label Reboot
+            select.form-control(ng-model="vm.application.UninstallReboot" ng-options="index*1 as condition for (index, condition) in vm.RebootConditions")
+            
+    .col-xs-6
+        .form-group
+            label Uninstall time (minutes)
+            input.form-control(type="text" ng-model="vm.application.DisplayUninstallTime")
+        .form-group
+            label Parameters
+            input.form-control(ng-model="vm.application.UninstallParameters")
+        .checkbox
+            label 
+                input(type="checkbox" ng-model="vm.application.UninstallUserInteraction")
+            span User Interaction
+        .checkbox
+            label 
+                input(type="checkbox" ng-model="vm.application.NeedsSourceForUninstall")
+            span Needs source files for uninstall

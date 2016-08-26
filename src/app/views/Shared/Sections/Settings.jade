@@ -1,0 +1,5 @@
+h3.page-header Settings
+
+section(ng-controller="CodemirrorController")
+    div(ui-codemirror="editorOptions" ng-model="vm.cmModel")
+    input(class="btn btn-success" ng-click="vm.saveSettings(cmModel)" value="Save")

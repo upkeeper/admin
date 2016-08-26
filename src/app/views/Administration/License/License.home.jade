@@ -1,0 +1,28 @@
+.row
+    div(role="tabpanel")
+        ul.nav.nav-tabs(role="tablist")
+            li.active(role="presentation")
+                a(data-target="#general" aria-controls="home" role="tab" data-toggle="tab") License
+.row
+    form(name="form" novalidate ng-submit="vm.save()")
+        .tab-content
+            .tab-pane.fade.in.active#general
+                h3.page-header License
+                .row
+                    .col-xs-6
+                        .form-group(ng-class="{ 'has-error': form.name.$invalid }")
+                            label Companyname
+                            input.form-control(type="text" name="name" ng-model="vm.settings.CompanyName" required)
+                        .checkbox
+                            label 
+                                input(type="checkbox" ng-model="vm.settings.AutoLicenseUpdate")
+                            span Auto License Update
+                    .col-xs-6        
+                        .form-group()
+                            label License Key
+                            textarea.form-control(type="text" ng-model="vm.settings.LicenseKey" cols="50", rows="12")
+                .row
+                    .col-xs-12
+                        .buttontoolbar
+                            .btn-group
+                                input.btn.btn-success(type="submit" value="Save" ng-disabled="form.$invalid")

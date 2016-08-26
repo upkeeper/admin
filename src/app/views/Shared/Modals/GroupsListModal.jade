@@ -1,0 +1,34 @@
+.row
+    .col-xs-12
+        .buttontoolbar
+            .btn-group
+                input.btn.btn-success#addGroupsBtn(type="button" value="Add Group..." title="Add Group" data-toggle="modal" data-target="#addGroups" ng-click="vm.getAddComputerGroups()")
+                input.btn.btn-danger(type="button" value="Remove" ng-click="vm.removeGroup()")
+.modal.fade#addGroups(tabindex="-1" role="dialog" aria-labelledby="myModalLabel")
+        .modal-dialog(role="document")
+            .modal-content
+                form#dlgForm
+                    .modal-header
+                        button.close(type="button" data-dismiss="modal" aria-label="Close")
+                            span(aria-hidden="true")
+                        h4.modal-title#gridSystemModalLabel Add group(s)
+                        include ModalSearchHeader.jade
+                    .modal-body
+                        table.table.table-hover
+                            thead
+                                tr
+                                    th
+                                        input(type="checkbox")
+                                    th Name
+                                    th Description
+                            tbody
+                                tr(dir-paginate="group in vm.addGroups | filter: vm.modalsearchvalue | itemsPerPage:10")
+                                    td
+                                        input(type="checkbox" ng-model="group.selected")
+                                    td {{group.Name}}
+                                td {{group.Description}}
+                .modal-footer
+                    .modal-footer-buttons
+                        input.btn.btn-success(title="Add group" value="Add group" type="button" ng-click="vm.addGroup()" data-dismiss="modal")
+                        button.btn.btn-default(data-dismiss="modal") Close
+                    dir-pagination-controls(max-size="5" boundary-links="true")

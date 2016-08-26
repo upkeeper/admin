@@ -1,0 +1,15 @@
+h3.page-header Remote
+.row
+    .col-xs-6
+        .form-group
+            label Custom VNC Command
+            input.form-control(ng-model="vm.config.CustomVNCCommand")
+        .form-group
+            label RDP Template
+            textarea.form-control(type="text" cols="50", rows="12", ng-model="vm.config.RDPTemplate")
+        .form-group
+            label vPro Url
+            input.form-control(ng-model="vm.config.VproUrl")
+        .form-group
+            label TeamViewer Command
+            textarea.form-control(type="text" cols="50", rows="12", ng-model="vm.config.TeamViewerCommand")

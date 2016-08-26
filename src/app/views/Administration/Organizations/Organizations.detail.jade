@@ -1,0 +1,26 @@
+.row
+    div(role="tabpanel")
+        ul.nav.nav-tabs(role="tablist")
+            li.active(role="presentation")
+                a(data-target="#general" aria-controls="home" role="tab" data-toggle="tab") General
+.row
+    form(name="form" novalidate ng-submit="vm.save()")
+        .tab-content
+            .tab-pane.fade.in.active#general
+                h3.page-header General
+                .row
+                    .col-xs-6
+                        .form-group(ng-class="{ 'has-error': form.name.$invalid }")
+                            label Name
+                            input.form-control(type="text" name="name" ng-model="vm.organization.Name" required)
+                        .checkbox
+                            label 
+                                input(type="checkbox" ng-model="vm.organization.AutoRegisterClients")
+                            span Allow client to register automatic
+                    .col-xs-6        
+                        .form-group()
+                            label Description
+                            textarea.form-control(type="text" ng-model="vm.organization.Description" cols="50", rows="12")
+                include ../../Shared/Savebutton.jade
+
+

@@ -1,0 +1,27 @@
+h3.page-header Usage Metering Summary
+.row
+    .col-xs-6
+        .form-group
+            table
+                tr
+                    td Number of computers:
+                    td {{vm.usageMetering.NumberOfComputers}}
+                tr
+                    td Metering started:
+                    td {{vm.usageMetering.StartDate | date:'yyyy-MM-dd hh:mm.ss'}}
+                tr
+                    td Metering ended:
+                    td {{vm.usageMetering.EndDate | date:'yyyy-MM-dd hh:mm.ss'}}
+                tr
+                    td Number of applications found:
+                    td {{vm.usageMetering.FoundApplications}}
+                tr
+                    td Number of application in library:
+                    td {{vm.usageMetering.LibraryApplications}}
+                    
+h3.page-header Reset Usage Metering
+.row
+    .col-xs-6
+        .form-group
+            label You can reset current usage metering removing all metering data except application library data. Application library contains meta information collected from application exe files found using Usage Metering.
+            input(value="Reset Usage Metering" type="button" class="btn btn-primary" ng-click="vm.resetUsageMetering()")

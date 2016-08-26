@@ -1,0 +1,46 @@
+#topbar{
+	width:100%;
+	height:$topbarheight;
+	//background-color:$grey;
+    background-color:#FEFEFE;
+	position:fixed;
+	z-index: 100;
+    margin-left:$sidebarwidth;
+    -webkit-box-shadow: 0px 0px 1px rgba(0, 0, 0, 0.5);
+	
+	#sitelogo{
+		float:left; 
+		margin-top:15px; 
+		margin-left:30px;
+	}
+	
+	ul{
+		//height:$topbarheight;
+		//padding-right:30px;
+	}
+		
+	li{
+		list-style: none;
+		display:inline-block;
+		
+		i{
+			padding: 15px;
+			padding-right: 35px;
+		}
+	}
+	
+	a{
+		//color:#CECECE;
+	}
+    
+    .dropdown-item{
+        padding: 0;
+        text-align: center;
+        width: 250px;
+        color: white;   
+        
+        a{
+            padding:0;
+        }
+    }
+}

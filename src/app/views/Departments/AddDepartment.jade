@@ -1,0 +1,11 @@
+.row
+    div(role="tabpanel")
+        ul.nav.nav-tabs(role="tablist")
+            li.active(role="presentation")
+                a(data-target="#general" aria-controls="home" role="tab" data-toggle="tab") General
+.row
+    form(name="form" novalidate  ng-submit="vm.save()")
+        .tab-content
+            .tab-pane.fade.in.active#general
+                include ../Departments/Tabs/General.jade
+                include ../Shared/Savebutton.jade

@@ -1,0 +1,99 @@
+.modal.fade#computerInventory(tabindex="-1" role="dialog" aria-labelledby="myModalLabel")
+	.modal-dialog(role="document")
+		.modal-content
+			form#dlgForm.computerInventory
+				.modal-header
+					button.close(type="button" data-dismiss="modal" aria-label="Close")
+						span(aria-hidden="true")
+					h4.modal-title#gridSystemModalLabel Computer Inventory
+				.modal-body
+					.row
+						div(role="tabpanel")
+							ul.nav.nav-tabs(role="tablist")
+								li.active(role="presentation")
+									a(data-target="#hardwaretab" aria-controls="home" role="tab" data-toggle="tab") Hardware
+								li(role="presentation")
+									a(data-target="#softwaretab" aria-controls="home" role="tab" data-toggle="tab") Software
+								li(role="presentation")
+									a(data-target="#updatetab" aria-controls="home" role="tab" data-toggle="tab") Updates
+					.tab-content
+						.tab-pane.fade.in.active#hardwaretab
+							h4.page-header System
+							.row(ng-repeat="hardwareproperty in vm.computerHardware.Properties")
+								.col-xs-6
+									span {{hardwareproperty.Property}}
+								.col-xs-6
+									span {{hardwareproperty.Value}}
+							h4.page-header Fixed Disks
+							.row(ng-repeat="hardwaredisk in vm.computerHardware.Disks")
+								.col-xs-6
+									span {{hardwaredisk.Property}}
+								.col-xs-6
+									span {{hardwaredisk.Value}}
+							h4.page-header Network Adapters
+							.row(ng-repeat="hardwareNetAdapter in vm.computerHardware.NetworkAdapters")
+								.col-xs-6
+									span {{hardwareNetAdapter.Property}}
+								.col-xs-6
+									span {{hardwareNetAdapter.Value}}
+						.tab-pane.fade#softwaretab
+							h4.page-header Software
+							.row
+								.col-xs-6
+									span Computer Name
+								.col-xs-6
+									span {{vm.computerSoftware[0].ComputerName}}
+							.row
+								.col-xs-6
+									span Time of inventory
+								.col-xs-6
+									span {{vm.computerSoftware[0].InventoryDateTime | date:'yyyy-MM-dd hh:mm'}}
+							table.table.table-hover.table-striped
+								thead
+									tr
+										th Name
+										th Version
+										th Publisher
+										th Product Id
+								tbody
+									tr(ng-repeat="software in vm.computerSoftware")
+										td {{software.Name}}
+										td {{software.Version}}
+										td {{software.Publisher}}
+										td {{software.ProductId}}
+						.tab-pane.fade#updatetab
+							h4.page-header Updates
+							.row
+								.col-xs-6
+									span Computer Name
+								.col-xs-6
+									span {{vm.computerSoftware[0].ComputerName}}
+							.row
+								.col-xs-6
+									span Time of inventory
+								.col-xs-6
+									span {{vm.computerSoftware[0].InventoryDateTime | date:'yyyy-MM-dd hh:mm'}}
+							.row
+								.col-xs-6
+									span Installed updates
+								.col-xs-6
+									span -
+							.row
+								.col-xs-6
+									span Available updates
+								.col-xs-6
+									span -
+							table.table.table-hover.table-striped
+								thead
+									tr
+										th Hotfix ID
+										th Type
+										th Status
+								tbody
+									tr(ng-repeat="update in vm.computerUpdates")
+										td {{update.HotFixId}}
+										td {{update.UpdateType}}
+										td -
+				.modal-footer
+					.modal-footer-buttons
+						button.btn.btn-primary(data-dismiss="modal") Close
