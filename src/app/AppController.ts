@@ -9,14 +9,18 @@ namespace upk {
         selectedOrganization: string;
         organizations: Organization[] = [];
 
-        static $inject: Array<string> = ['authService', '$rootScope', '$location', 'SettingsService', 'ApiService', 'PermissionService', '$window', 'organizationService'];
-        constructor(private authService: IAuthService, private $rootScope, private $location: ng.ILocationService, private SettingsService: ISettingsService, private ApiService: IApiService, private PermissionService: IPermissionService, private $window, private OrganizationService: IOrganizationService) {
+        static $inject: Array<string> = [
+            'authService', '$rootScope', '$location', 'SettingsService', 'ApiService', 'PermissionService', '$window', 'organizationService'
+        ];
+        constructor(private authService: IAuthService, private $rootScope, private $location: ng.ILocationService,
+            private SettingsService: ISettingsService, private ApiService: IApiService, private PermissionService: IPermissionService,
+            private $window, private OrganizationService: IOrganizationService) {
             OrganizationService.getOrganizations().then(res => {
                 this.organizations = res;
                 this.organizations.forEach(item => {
                     item.Number = item.Number.toString();
-                })
-            })
+                });
+            });
             $rootScope.listlimit = this.limit;
         }
 
@@ -29,11 +33,12 @@ namespace upk {
         }
 
         isLoginScreen() {
-            if (this.$location.path() == '/Login')
+            if (this.$location.path() === '/Login') {
                 return true;
-            else
+            } else {
                 return false;
-        }
+            }
+        };
 
         setListLimit() {
             this.$rootScope.listlimit = this.limit;

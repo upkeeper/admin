@@ -10,21 +10,21 @@
             '$routeProvider', '$locationProvider', ($routeProvider, $locationProvider) => {
                 $routeProvider
                     .when('/', {
-                        redirectTo: "/Home"
+                        redirectTo: '/Home'
                     })
                     .when('/Login', {
                         templateUrl: 'views/app/views/Login/Login.html',
-                        controller: "LoginController",
+                        controller: 'LoginController',
                         controllerAs: 'vm'
                     })
                     .when('/Home', {
                         templateUrl: 'views/app/views/Home/HomeIndex.html',
-                        controller: "HomeController",
+                        controller: 'HomeController',
                         controllerAs: 'vm'
                     })
                     .when('/Applications', {
                         templateUrl: 'views/app/views/Applications/ApplicationsIndex.html',
-                        controller: "ApplicationController",
+                        controller: 'ApplicationController',
                         controllerAs: 'vm'
                     })
                     .when('/Applications/Create', {
@@ -34,72 +34,72 @@
                     })
                     .when('/Applications/:id', {
                         templateUrl: 'views/app/views/Applications/EditApplication.html',
-                        controller: "EditApplicationController",
+                        controller: 'EditApplicationController',
                         controllerAs: 'vm'
                     })
                     .when('/Computers', {
                         templateUrl: 'views/app/views/Computers/ComputersIndex.html',
-                        controller: "ComputerController",
+                        controller: 'ComputerController',
                         controllerAs: 'vm'
                     })
                     .when('/Computers/Create', {
                         templateUrl: 'views/app/views/Computers/AddComputer.html',
-                        controller: "AddComputerController",
+                        controller: 'AddComputerController',
                         controllerAs: 'vm'
                     })
                     .when('/Computers/:id', {
                         templateUrl: 'views/app/views/Computers/EditComputer.html',
-                        controller: "EditComputerController",
+                        controller: 'EditComputerController',
                         controllerAs: 'vm'
                     })
                     .when('/Groups', {
                         templateUrl: 'views/app/views/Groups/GroupsIndex.html',
-                        controller: "GroupsController",
+                        controller: 'GroupsController',
                         controllerAs: 'vm'
                     })
                     .when('/Groups/Create', {
                         templateUrl: 'views/app/views/Groups/AddGroup.html',
-                        controller: "AddGroupController",
+                        controller: 'AddGroupController',
                         controllerAs: 'vm'
                     })
                     .when('/Groups/:id', {
                         templateUrl: 'views/app/views/Groups/EditGroup.html',
-                        controller: "EditGroupController",
+                        controller: 'EditGroupController',
                         controllerAs: 'vm'
                     })
                     .when('/Hardware', {
                         templateUrl: 'views/app/views/Hardware/HardwareIndex.html',
-                        controller: "HardwareController",
+                        controller: 'HardwareController',
                         controllerAs: 'vm'
                     })
                     .when('/Hardware/Create', {
                         templateUrl: 'views/app/views/Hardware/AddHardware.html',
-                        controller: "AddHardwareController",
+                        controller: 'AddHardwareController',
                         controllerAs: 'vm'
                     })
                     .when('/Hardware/:id', {
                         templateUrl: 'views/app/views/Hardware/EditHardware.html',
-                        controller: "EditHardwareController",
+                        controller: 'EditHardwareController',
                         controllerAs: 'vm'
                     })
                     .when('/Platforms', {
                         templateUrl: 'views/app/views/Platforms/PlatformsIndex.html',
-                        controller: "PlatformsController",
+                        controller: 'PlatformsController',
                         controllerAs: 'vm'
                     })
                     .when('/Platforms/Create', {
                         templateUrl: 'views/app/views/Platforms/AddPlatform.html',
-                        controller: "AddPlatformController",
+                        controller: 'AddPlatformController',
                         controllerAs: 'vm'
                     })
                     .when('/Platforms/:id', {
                         templateUrl: 'views/app/views/Platforms/EditPlatform.html',
-                        controller: "EditPlatformController",
+                        controller: 'EditPlatformController',
                         controllerAs: 'vm'
                     })
                     .when('/DistributionPoints', {
                         templateUrl: 'views/app/views/DistributionPoints/DistributionsIndex.html',
-                        controller: "DistributionsController",
+                        controller: 'DistributionsController',
                         controllerAs: 'vm'
                     })
                     .when('/DistributionPoints/Create', {
@@ -109,22 +109,22 @@
                     })
                     .when('/DistributionPoints/:id', {
                         templateUrl: 'views/app/views/DistributionPoints/EditDistribution.html',
-                        controller: "EditDistributionController",
+                        controller: 'EditDistributionController',
                         controllerAs: 'vm'
                     })
                     .when('/Tasks', {
                         templateUrl: 'views/app/views/Tasks/TasksIndex.html',
-                        controller: "TasksController",
+                        controller: 'TasksController',
                         controllerAs: 'vm'
                     })
                     .when('/Tasks/Create', {
                         templateUrl: 'views/app/views/Tasks/AddTask.html',
-                        controller: "AddTaskController",
+                        controller: 'AddTaskController',
                         controllerAs: 'vm'
                     })
                     .when('/Tasks/:id', {
                         templateUrl: 'views/app/views/Tasks/EditTask.html',
-                        controller: "EditTaskController",
+                        controller: 'EditTaskController',
                         controllerAs: 'vm'
                     })
                     .when('/Configuration', {
@@ -146,7 +146,7 @@
                     })
                     .when('/BatchJobs/:id', {
                         templateUrl: 'views/app/views/BatchJobs/EditBatchJob.html',
-                        controller: "EditBatchJobsController",
+                        controller: 'EditBatchJobsController',
                         controllerAs: 'vm'
                     })
                     .when('/Reports', {
@@ -169,20 +169,22 @@
                     })
                     .when('/Departments/:id', {
                         templateUrl: 'views/app/views/Departments/EditDepartment.html',
-                        controller: "EditDepartmentsController",
+                        controller: 'EditDepartmentsController',
                         controllerAs: 'vm'
                     })
                     .otherwise({
-                        redirectTo: "/Home"
+                        redirectTo: '/Home'
                     });
             }])
 
-        .run(['ApiService', '$rootScope', '$location', 'authService', 'tokenService', 'organizationService', (ApiService, $rootScope, $location, authService, tokenService, organizationService: upk.IOrganizationService) => {
-            authService.fillAuthData();
-
-            $rootScope.$on("$routeChangeStart", (event, next, current) => {
+        .run([
+            'ApiService', '$rootScope', '$location', 'authService', 'tokenService', 'organizationService',
+            (ApiService, $rootScope, $location, authService, tokenService, organizationService: upk.IOrganizationService) => {
                 authService.fillAuthData();
-            });
-        }]);
+
+                $rootScope.$on('$routeChangeStart', (event, next, current) => {
+                    authService.fillAuthData();
+                });
+            }]);
 })();
 

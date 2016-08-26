@@ -8,8 +8,7 @@ namespace upk {
     }
 
     class TokenService implements ITokenService {
-        constructor() {
-        }
+        constructor() {}
 
         getToken(): Token {
             var token: Token = JSON.parse(localStorage.getItem('upkeeperData'));
@@ -36,7 +35,7 @@ namespace upk {
         getUsername() {
             var token: Token = JSON.parse(localStorage.getItem('upkeeperData'));
             if (token) {
-                return token.userName
+                return token.userName;
             }
         }
     }

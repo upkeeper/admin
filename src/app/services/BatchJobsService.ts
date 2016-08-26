@@ -28,7 +28,7 @@ namespace upk {
         }
 
         updateBatchJob(id: string, batchJob: BatchJob) {
-            return this.$http.put(this.apiUrl + 'BatchJob/' + id, batchJob)
+            return this.$http.put(this.apiUrl + 'BatchJob/' + id, batchJob);
         }
 
         removeBatchJob(id: string) {

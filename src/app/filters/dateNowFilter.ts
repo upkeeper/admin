@@ -1,4 +1,4 @@
-(function() {
+(function () {
     angular.module('Upkeeper')
         .filter('dateNow', () => {
             return input => {
@@ -21,8 +21,9 @@
                 secs = secs - (minusminutes + minutes * 60);
                 secs = secs * -1;
 
-                if (days > 100)
+                if (days > 100) {
                     return '';
+                }
                 if (days === 0) {
                     if (hours === 0) {
                         if (minutes === 0) {

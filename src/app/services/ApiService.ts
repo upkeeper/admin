@@ -17,7 +17,8 @@ namespace upk {
         public organizationId: string;
 
         static $inject: Array<string> = ['organizationService', '$rootScope', 'CONFIG', '$window', '$q', 'PermissionService'];
-        constructor(private organizationService: IOrganizationService, private $rootScope, private CONFIG: config.IConfig, private $window, private $q: ng.IQService, private PermissionService) {
+        constructor(private organizationService: IOrganizationService, private $rootScope, private CONFIG: config.IConfig,
+        private $window, private $q: ng.IQService, private PermissionService: IPermissionService) {
         }
 
         setApiUrl() {
@@ -39,8 +40,7 @@ namespace upk {
                     this.$rootScope.currentOrganization = localStorage.getItem('organizationId');
                     this.setApiUrl();
                     this.PermissionService.Login();
-                }
-                else {
+                } else {
                     this.organization = res[0].Number;
                     this.organizationId = res[0].Id;
                     localStorage.setItem('organization', res[0].Number);
@@ -50,8 +50,8 @@ namespace upk {
                     this.PermissionService.Login();
                 }
                 deferred.resolve();
-            })
-            return deferred.promise
+            });
+            return deferred.promise;
         }
 
         logout() {
@@ -65,5 +65,5 @@ namespace upk {
     }
     angular
         .module('Upkeeper')
-        .service('ApiService', ApiService)
+        .service('ApiService', ApiService);
 }
