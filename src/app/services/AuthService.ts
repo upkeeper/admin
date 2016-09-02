@@ -75,6 +75,7 @@ namespace upk {
             var authData = this.tokenService.getToken();
             if (authData) {
                 this.$rootScope.currentOrganization = localStorage.getItem('organizationId');
+                this.$rootScope.currentOrgName = localStorage.getItem('organizationName');
                 this._authentication.isAuth = true;
                 this._authentication.userName = authData.userName;
                 this._authentication.useRefreshTokens = true;

@@ -45,7 +45,11 @@ namespace upk {
         };
 
         setCurrentOrganization() {
-            this.ApiService.setCurrentOrganization();
+            for(let {Name, Number} of this.organizations){
+                if(this.ApiService.organization === Number) {
+                    this.ApiService.setCurrentOrganization(Name);
+                }
+            }
         }
 
         logout() {
