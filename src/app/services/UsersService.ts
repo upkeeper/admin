@@ -3,6 +3,7 @@ namespace upk {
 
     export interface IUserService {
         getUsers(): ng.IPromise<Array<User>>;
+        getADUsers(): ng.IPromise<Array<User>>;
         getUser(id: string): ng.IPromise<User>;
         addUser(user: User): ng.IPromise<{}>;
         updateUser(user: User): ng.IPromise<{}>;
@@ -23,15 +24,18 @@ namespace upk {
         }
 
         getUsers(): ng.IPromise<User[]> {
-            //return this.$http.get(`${this.apiUrl}Users?upKeeperUsers=false`).then(res => res.data);
             return this.$http.get(this.apiUrl + 'Users?upKeeperUsers=true').then(res => res.data);
+        }
+
+        getADUsers(): ng.IPromise<User[]> {
+            return this.$http.get(this.apiUrl + 'Users?upkeeperUsers=false').then(res => res.data);
         }
 
         getUser(id: string): ng.IPromise<User> {
             return this.$http.get(this.apiUrl + 'User/' + id).then(res => res.data);
         }
 
-        addUser(user: User): ng.IPromise<{}> {
+        addUser(user: User): ng.IPromise<any> {
             user.Deleted = false;
             user.Source = 'upKeeper';
             return this.$http.post(this.apiUrl + 'User', user);

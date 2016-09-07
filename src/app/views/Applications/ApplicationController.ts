@@ -13,7 +13,11 @@ namespace upk {
         cols: any;
 
         static $inject = ['$location', 'applicationService', 'organizationService', 'PermissionService'];
-        constructor(private $location: ng.ILocationService, private applicationService: IApplicationService, private organizationService: IOrganizationService, private PermissionService: IPermissionService) {
+        constructor(private $location: ng.ILocationService,
+            private applicationService: IApplicationService,
+            private organizationService: IOrganizationService,
+            private PermissionService: IPermissionService) {
+                
             applicationService.getApplications().then(data => this.applications = data);
             this.cols =
                 [
@@ -35,7 +39,7 @@ namespace upk {
         }
 
         editApplication(application) {
-            if(this.PermissionService.HasPermission('Application_Create_Edit'))
+            if (this.PermissionService.HasPermission('Application_Create_Edit'))
                 this.$location.path("/Applications/" + application.Id);
         }
     }

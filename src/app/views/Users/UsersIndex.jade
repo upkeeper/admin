@@ -1,0 +1,14 @@
+include ../Shared/Searchbar.jade
+.row
+    table.table.table-hover.table-striped
+        thead
+            tr
+                th Fullname
+                th Username
+                th Email
+        tbody
+            tr(dir-paginate="user in vm.users | filter:vm.searchvalue | itemsPerPage:app.limit.limit")
+                td {{user.Name}}
+                td {{user.Username}}
+                td {{user.Email}}
+pagination-bar(create-permission="'Application_Create_Edit'" create-item="vm.create()")

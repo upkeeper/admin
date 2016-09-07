@@ -172,6 +172,11 @@
                         controller: 'EditDepartmentsController',
                         controllerAs: 'vm'
                     })
+                    .when('/Users', {
+                        templateUrl: 'views/app/views/Users/UsersIndex.html',
+                        controller: 'UsersController',
+                        controllerAs: 'vm'
+                    })
                     .otherwise({
                         redirectTo: '/Home'
                     });
