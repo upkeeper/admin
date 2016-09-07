@@ -74,3 +74,7 @@ gulp.task('watch', ['browser-sync'], function() {
     gulp.watch('src/**/*.scss', ['sass', browserSync.reload]);
     gulp.watch('src/**/*.ts', ['scripts', browserSync.reload]);
 });
+
+gulp.task('test', function() {
+    return 'Build OK';
+});
