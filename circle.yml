@@ -1,2 +1,13 @@
-general:
-    build_dir: wwwroot
+machine:  
+  environment:
+    NODE_ENV: test
+    TZ: Europe/Stockholm
+  node:
+    version: v6.2.2
+
+dependencies:  
+  cache_directories:
+    - node_modules
+test:  
+  override:
+    - gulp production
