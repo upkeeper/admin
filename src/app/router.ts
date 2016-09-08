@@ -177,6 +177,16 @@
                         controller: 'UsersController',
                         controllerAs: 'vm'
                     })
+                    .when('/Users/Create', {
+                        templateUrl: 'views/app/views/Users/UsersIndex.html',
+                        controller: 'UsersController',
+                        controllerAs: 'vm'
+                    })
+                    .when('/Users/:id', {
+                        templateUrl: 'views/app/views/Users/EditUser.html',
+                        controller: 'EditUserController',
+                        controllerAs: 'vm'
+                    })
                     .otherwise({
                         redirectTo: '/Home'
                     });

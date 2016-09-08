@@ -6,11 +6,16 @@ namespace upk {
 
         constructor(private $location: ng.ILocationService, private userService: IUserService) {
             userService.getADUsers().then(res => this.users = res);
-         }
+        }
 
-         public create(){
+        public editUser(user: User) {
+            console.log(user);
+            this.$location.path('/Users/' + user.Id);
+        }
 
-         }
+        public create() {
+            this.$location.path('/Users/Create');
+        }
     }
 
     angular.module('Upkeeper')

@@ -20,23 +20,27 @@ namespace upk {
 
         addApplications: Application[];
 
-        static $inject: Array<String> = ['$location', '$routeParams', 'computerService', 'tokenService', '$alert', '$timeout', '$scope']
-        constructor(private $location: ng.ILocationService, private $routeParams: any, private computerService: IComputerService, private tokenService: ITokenService, private $alert, private $timeout, private $scope) {
+        static $inject: Array<String> = ['$location', '$routeParams', 'computerService', 'tokenService', '$alert', '$timeout', '$scope'];
+        constructor(private $location: ng.ILocationService,
+            private $routeParams: any,
+            private computerService: IComputerService,
+            private tokenService: ITokenService, private $alert,
+            private $timeout, private $scope) {
             computerService.getComputerDetail($routeParams.id).then(data => this.computer = data);
             computerService.getInstantFunctions($routeParams.id).then(data => this.instantFunctions = data);
             computerService.getListHardwares($routeParams.id).then(res => this.hardwares = res.data);
             computerService.getListPlatforms($routeParams.id).then(res => this.platforms = res.data);
-            computerService.getComputerSettings($routeParams.id).then(res => this.cmModel = res.data)
-            computerService.getComputerApplications($routeParams.id, "True").then(data => this.applications = data);
-            computerService.getComputerGroups($routeParams.id, "True").then(data => this.groups = data);
-            computerService.getComputerTasks($routeParams.id, "True").then(data => this.tasks = data);
+            computerService.getComputerSettings($routeParams.id).then(res => this.cmModel = res.data);
+            computerService.getComputerApplications($routeParams.id, 'True').then(data => this.applications = data);
+            computerService.getComputerGroups($routeParams.id, 'True').then(data => this.groups = data);
+            computerService.getComputerTasks($routeParams.id, 'True').then(data => this.tasks = data);
             computerService.getComputerEvents($routeParams.id).then(data => this.events = data);
             computerService.getMergedSettings(this.$routeParams.id).then(data => this.mergedSettings = data);
 
             this.getLogLoop();
             $scope.$on('$destroy', event => {
                 this.$timeout.cancel(this.timer);
-            })
+            });
         }
 
         delete() {
@@ -49,7 +53,7 @@ namespace upk {
 
         getAddComputerApplications() {
             this.addApplications = [];
-            this.computerService.getComputerApplications(this.$routeParams.id, "False").then(data => this.addApplications = data)
+            this.computerService.getComputerApplications(this.$routeParams.id, 'False').then(data => this.addApplications = data);
         };
 
         addApplication() {
@@ -60,7 +64,7 @@ namespace upk {
                 }
             }
             this.computerService.addComputerItems(this.$routeParams.id, applications, 'Applications').then(() => {
-                this.computerService.getComputerApplications(this.$routeParams.id, "True").then(data => this.applications = data);
+                this.computerService.getComputerApplications(this.$routeParams.id, 'True').then(data => this.applications = data);
             });
         };
 
@@ -72,7 +76,7 @@ namespace upk {
                 }
             }
             this.computerService.removeComputerItems(this.$routeParams.id, applications, 'Applications').then(() => {
-                this.computerService.getComputerApplications(this.$routeParams.id, "True").then(data => this.applications = data);
+                this.computerService.getComputerApplications(this.$routeParams.id, 'True').then(data => this.applications = data);
             });
         };
 
@@ -83,12 +87,12 @@ namespace upk {
                     applications.push(this.applications[i].Id);
                 }
             }
-            this.computerService.denyApplications(this.$routeParams.id, applications).then(res => console.log(res))
+            this.computerService.denyApplications(this.$routeParams.id, applications).then(res => console.log(res));
         };
 
         getAddComputerGroups() {
             this.addGroups = [];
-            this.computerService.getComputerGroups(this.$routeParams.id, "False").then(data => this.addGroups = data)
+            this.computerService.getComputerGroups(this.$routeParams.id, 'False').then(data => this.addGroups = data);
         };
 
         addGroup() {
@@ -99,7 +103,7 @@ namespace upk {
                 }
             }
             this.computerService.addComputerItems(this.$routeParams.id, groups, 'Groups').then(() => {
-                this.computerService.getComputerGroups(this.$routeParams.id, "True").then(data => this.groups = data);
+                this.computerService.getComputerGroups(this.$routeParams.id, 'True').then(data => this.groups = data);
             });
         };
 
@@ -110,14 +114,14 @@ namespace upk {
                     groups.push(this.groups[i].Id);
                 }
             }
-            this.computerService.removeComputerItems(this.$routeParams.id, grups, 'Groups').then(() => {
-                this.computerService.getComputerGroups(this.$routeParams.id, "True").then(data => this.groups = data);
+            this.computerService.removeComputerItems(this.$routeParams.id, groups, 'Groups').then(() => {
+                this.computerService.getComputerGroups(this.$routeParams.id, 'True').then(data => this.groups = data);
             });
         }
 
         getAddComputerTasks() {
             this.addTasks = [];
-            this.computerService.getComputerTasks(this.$routeParams.id, "False").then(data => this.addTasks = data);
+            this.computerService.getComputerTasks(this.$routeParams.id, 'False').then(data => this.addTasks = data);
         }
 
         addTask() {
@@ -128,7 +132,7 @@ namespace upk {
                 }
             }
             this.computerService.addComputerItems(this.$routeParams.id, tasks, 'Tasks').then(() => {
-                this.computerService.getComputerTasks(this.$routeParams.id, "True").then(data => this.tasks = data);
+                this.computerService.getComputerTasks(this.$routeParams.id, 'True').then(data => this.tasks = data);
             });
         };
 
@@ -140,7 +144,7 @@ namespace upk {
                 }
             }
             this.computerService.removeComputerItems(this.$routeParams.id, tasks, 'Tasks').then(() => {
-                this.computerService.getComputerTasks(this.$routeParams.id, "True").then(data => this.tasks = data);
+                this.computerService.getComputerTasks(this.$routeParams.id, 'True').then(data => this.tasks = data);
             });
         }
 
@@ -152,7 +156,7 @@ namespace upk {
 
 
         update_mirror() {
-            var codeMirrorContainer: any = $(".CodeMirror")[0];
+            var codeMirrorContainer: any = $('.CodeMirror')[0];
             codeMirrorContainer.CodeMirror.refresh();
         }
 
@@ -161,23 +165,29 @@ namespace upk {
         }
 
         runInstantFunction() {
-            this.computerService.postInstantFunction(this.computer.Id, this.selectedInstantFunction, this.tokenService.getUsername()).then(res => {
-                console.log(res);
-                if (res.statusText == "OK")
-                    this.$alert({ title: 'Action Completed: ' + res.statusText, placement: 'top', type: 'info', show: true, duration: 3 });
-                else
-                    this.$alert({ title: 'An error occured: ' + res.statusText, placement: 'top', type: 'danger', show: true, duration: 5 });
-            });
+            this.computerService.postInstantFunction(this.computer.Id, this.selectedInstantFunction, this.tokenService.getUsername())
+                .then(res => {
+                    if (res.statusText == 'OK') {
+                        this.$alert({
+                            title: 'Action Completed: ' + res.statusText,
+                            placement: 'top', type: 'info', show: true, duration: 3
+                        });
+                    }
+                    else {
+                        this.$alert({
+                            title: 'An error occured: ' + res.statusText,
+                            placement: 'top', type: 'danger', show: true, duration: 5
+                        });
+                    }
+                });
         }
 
         getLogLoop() {
-            this.timer = this.$timeout(() => {
-            }, 15000)
+            this.timer = this.$timeout(() => { }, 15000);
             this.timer.then(() => {
                 this.computerService.getComputerEvents(this.$routeParams.id).then(data => this.events = data);
                 this.getLogLoop();
-            }, err => {
-            })
+            }, err => { });
         }
 
         getMergedSettigns() {

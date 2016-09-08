@@ -65,7 +65,8 @@ namespace upk {
         };
 
         postInstantFunction(id: string, functionId: string, username: string) {
-            return this.$http.post(this.apiUrl + 'Computer/' + id + '/InstantTasks?functionId=' + functionId + '&userName=' + username, null);
+            return this.$http.post(this.apiUrl + 'Computer/' + id + '/InstantTasks?functionId=' +
+                functionId + '&userName=' + username, null);
         };
 
         postInstantFunctions(computerIds: Array<string>, functionId: string) {
@@ -103,7 +104,8 @@ namespace upk {
         getComputerEvents(id: string) {
             let now = moment().format('YYYY-MM-DD');
             let earlier = moment().subtract(3, 'months').format('YYYY-MM-DD');
-            return this.$http.get(this.apiUrl + 'Computer/' + id + '/Events?logLevel=0&startDate=' + earlier + '&endDate=' + now).then(res => res.data);
+            return this.$http.get(this.apiUrl + 'Computer/' + id + '/Events?logLevel=0&startDate=' +
+                earlier + '&endDate=' + now).then(res => res.data);
         };
 
         addComputerItems<T>(id: string, items: Array<T>, end: string) {
@@ -120,7 +122,7 @@ namespace upk {
                     'Content-Type': 'application/json'
                 },
                 data: items
-            })
+            });
         };
 
         getHardwareInventory(id: string) {

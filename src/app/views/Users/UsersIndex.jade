@@ -8,7 +8,7 @@ include ../Shared/Searchbar.jade
                 th Email
         tbody
             tr(dir-paginate="user in vm.users | filter:vm.searchvalue | itemsPerPage:app.limit.limit")
-                td {{user.Name}}
+                td(ng-click="vm.editUser(user)") {{user.Name}}
                 td {{user.Username}}
                 td {{user.Email}}
 pagination-bar(create-permission="'Application_Create_Edit'" create-item="vm.create()")
