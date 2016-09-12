@@ -4,6 +4,7 @@
             $httpProvider.defaults.useXDomain = true;
             $httpProvider.interceptors.push('authInterceptorService');
             cfpLoadingBarProvider.includeBar = false;
+            cfpLoadingBarProvider.latencyThreshold = 500;
         }])
 
         .config([

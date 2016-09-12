@@ -8,6 +8,11 @@ namespace upk {
         static $inject: Array<String> = ['$location', '$route'];
         constructor(private $location: ng.ILocationService, private $route) {
             this.sidebarActive = false;
+
+         /*   const options = {
+                trigger: 'hover'
+            }*/
+            $('[data-toogle="tooltip"]').tooltip();
         };
 
         setActivePage(viewLocation: string) {
@@ -37,6 +42,10 @@ namespace upk {
             }
             else
                 return false;
+        }
+
+        closeSideBar() {
+            this.sidebarActive = false;
         }
     }
 
