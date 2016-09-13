@@ -24,8 +24,8 @@ namespace upk {
         constructor(private $location: ng.ILocationService,
             private $routeParams: any,
             private computerService: IComputerService,
-            private tokenService: ITokenService, private $alert,
-            private $timeout, private $scope) {
+            private tokenService: ITokenService, private $alert: any,
+            private $timeout: ng.ITimeoutService, private $scope: ng.IScope) {
             computerService.getComputerDetail($routeParams.id).then(data => this.computer = data);
             computerService.getInstantFunctions($routeParams.id).then(data => this.instantFunctions = data);
             computerService.getListHardwares($routeParams.id).then(res => this.hardwares = res.data);
@@ -183,11 +183,11 @@ namespace upk {
         }
 
         getLogLoop() {
-            this.timer = this.$timeout(() => { }, 15000);
+            this.timer = this.$timeout(() => {}, 20000);
             this.timer.then(() => {
                 this.computerService.getComputerEvents(this.$routeParams.id).then(data => this.events = data);
                 this.getLogLoop();
-            }, err => { });
+            }, err => {});
         }
 
         getMergedSettigns() {

@@ -20,9 +20,15 @@ namespace upk {
 
         computers: Array<Computer>;
 
-        static $inject = ['$location', 'computerService', 'taskService', 'groupService', 'hardwareService', 'applicationService', 'platformService', 'PermissionService'];
-        constructor(private $location, private computerService: IComputerService, private taskService: ITaskService, private groupService: IGroupService, private hardwareService: IHardwareService, private applicationService: IApplicationService, private platformService: IPlatformService, private PermissionService: IPermissionService) {
-            this.searchbarvalue = "Computer Name:";
+        static $inject = ['$rootScope', '$location', 'computerService', 'taskService',
+            'groupService', 'hardwareService', 'applicationService',
+            'platformService', 'PermissionService'];
+        constructor(private $rootScope: any, private $location, private computerService: IComputerService,
+            private taskService: ITaskService, private groupService: IGroupService,
+            private hardwareService: IHardwareService, private applicationService: IApplicationService,
+            private platformService: IPlatformService, private PermissionService: IPermissionService) {
+
+            this.searchbarvalue = 'Computer Name:';
             this.orderBy = 'name';
             this.reverseSort = false;
             this.filterWeek = false;
@@ -32,16 +38,15 @@ namespace upk {
 
             computerService.getComputers().then(data => this.computers = data);
             this.initFilters();
+
+            this.isCollapsed = !this.$rootScope.isCollapsed;
+
+
         }
 
         toggleSearchBar() {
-            this.isCollapsed = !this.isCollapsed;
-            if (this.rotated)
-                this.rotated = false;
-            else {
-                this.rotated = true;
-            }
-
+            this.$rootScope.isCollapsed = !this.$rootScope.isCollapsed;
+            this.isCollapsed = !this.$rootScope.isCollapsed;
         }
 
         initFilters() {
@@ -67,18 +72,18 @@ namespace upk {
 
         getComputerConnectionStatus(value) {
             if (value === 1) {
-                return "glow-green";
+                return 'glow-green';
+            } else if (value === 2) {
+                return 'glow-orange';
+            } else {
+                return 'powered-off';
             }
-            else if (value === 2) {
-                return "glow-orange";
-            }
-            else
-                return "powered-off";
         }
 
-        editComputer(computer) {
-            if (this.PermissionService.HasPermission('Computer_Create_Edit'))
+        editComputer(computer: Computer) {
+            if (this.PermissionService.HasPermission('Computer_Create_Edit')) {
                 this.$location.path('/Computers/' + computer.Id);
+            }
         };
 
         create() {
@@ -92,8 +97,7 @@ namespace upk {
                     selectedComputers.push(item.Id);
                 }
             });
-            this.computerService.postInstantFunctions(selectedComputers, this.selectedTask.Key).then(res => {
-            });
+            this.computerService.postInstantFunctions(selectedComputers, this.selectedTask.Key).then(res => { });
 
         }
         exportToExcel() {
@@ -107,7 +111,7 @@ namespace upk {
                 console.log(result);
                 if (window.navigator.msSaveOrOpenBlob) {
                     const blob = new Blob([decodeURIComponent(encodeURI(result.data))], {
-                        type: "text/csv;charset=utf-8;"
+                        type: 'text/csv;charset=utf-8;'
                     });
                     navigator.msSaveBlob(blob, 'export.csv');
                 } else {
@@ -120,8 +124,8 @@ namespace upk {
                     a.click();
                 }
             }, err => {
-                console.log(err)
-            })
+                console.log(err);
+            });
         }
 
     }

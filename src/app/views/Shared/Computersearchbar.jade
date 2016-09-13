@@ -6,7 +6,7 @@
                 button.btn.btn-primary.btn-icon()
                     i.fa.fa-search
                 div.btn.btn-primary.btn-icon.btn-arrow(ng-click="vm.toggleSearchBar()")
-                    i.fa.fa-arrow-down(rotate-flip="vm.rotated")
+                    i.fa.fa-arrow-down(rotate-flip="vm.isCollapsed")
     .form-group.limitdropdown
         select.form-control(ng-model="app.limit" ng-options="item.limit for item in app.listlimit" ng-change="setListLimit()")
 .row

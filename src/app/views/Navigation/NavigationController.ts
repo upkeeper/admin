@@ -9,9 +9,6 @@ namespace upk {
         constructor(private $location: ng.ILocationService, private $route) {
             this.sidebarActive = false;
 
-         /*   const options = {
-                trigger: 'hover'
-            }*/
             $('[data-toogle="tooltip"]').tooltip();
         };
 
