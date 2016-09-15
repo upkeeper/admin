@@ -50,7 +50,6 @@
         "**.vspscc"
     ],
     "scripts": {
-        "build": "webpack",
         "postinstall": "dnx web"
     }
 }

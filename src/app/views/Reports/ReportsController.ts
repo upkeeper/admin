@@ -1,8 +1,10 @@
 namespace upk {
     class ReportsController {
 
-        static $inject = ['$location'];
-        constructor(private $location: ng.ILocationService) {
+        reports: any;
+        static $inject = ['$location', 'reportService'];
+        constructor(private $location: ng.ILocationService, private reportService: IReportService) {
+            reportService.getReports().then(data => this.reports = data);
         }
     }
     angular.module('Upkeeper')

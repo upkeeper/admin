@@ -3,9 +3,8 @@
         div
             h3 Computers
             ul
-                li List all computers
-                li Allocation
-                li List computers with serial
+                li(ng-repeat="report in vm.reports") 
+                    a(ng-href="{{report.Path}}") {{report.Name}}
     .col-xs-6.col-md-3
         div
             h3 Inventory

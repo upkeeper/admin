@@ -45,7 +45,7 @@ namespace upk {
         }
 
         getComputerDetail(id: string) {
-            return this.$http.get(this.apiUrl + 'ComputerDetail/' + id).then(res => res.data);;
+            return this.$http.get(this.apiUrl + 'ComputerDetail/' + id).then(res => res.data);
         };
 
         addComputer(computer: Computer) {

@@ -62,7 +62,6 @@ namespace upk {
 
         logout() {
             this.PermissionService.Logout();
-            this.organization = null;
         }
 
         login() {
