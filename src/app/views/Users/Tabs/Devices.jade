@@ -1,0 +1,19 @@
+h3.page-header Devices
+include ../../Shared/Searchbar.jade
+.row
+    .col-xs-12
+        table.table.table-hover
+            thead
+                tr
+                    th()
+                        input(type="checkbox")
+                    th Devicename
+                    th Phonenumber
+                    th User
+            tbody
+                tr(ng-repeat="device in vm.devices | filter:vm.searchvalue | limitTo:app.limit.limit")
+                    td()
+                        input(type="checkbox" ng-model="device.selected")
+                    td {{device.DeviceName}}
+                    td {{device.PhoneNumber}}
+                    td {{device.USER_NAME}}

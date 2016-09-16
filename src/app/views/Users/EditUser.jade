@@ -3,9 +3,13 @@
         ul.nav.nav-tabs(role="tablist")
                 li.active(role="presentation")
                     a(data-target="#general" aria-controls="home" role="tab" data-toggle="tab") General
+                li(role="presentation")
+                    a(data-target="#devices" aria-controls="home" role="tab" data-toggle="tab") Devices
 .row
     form(name="form" novalidate  ng-submit="vm.save()")
         .tab-content
             .tab-pane.fade.in.active#general
                 include ../Users/Tabs/General.jade
                 save-button(delete-permission="'User_Delete'" delete-item="vm.delete()")
+            .tab-pane.fade.in#devices
+                include ../Users/Tabs/Devices.jade

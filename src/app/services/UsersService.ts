@@ -12,6 +12,7 @@ namespace upk {
         getUserRoles(id: string): ng.IPromise<Array<Role>>;
         addUserRole(id: string, rolesId: Array<String>): ng.IPromise<{}>;
         deleteUserRole(id: string): ng.IPromise<{}>;
+        getDevices(): ng.IPromise<any>;
 
 
     }
@@ -57,6 +58,10 @@ namespace upk {
         }
         deleteUserRole(id: string): ng.IPromise<{}> {
             return this.$http.delete(this.apiUrl + 'User/' + id + '/Roles');
+        }
+
+        getDevices() {
+            return this.$http.get('http://localhost:1338/devices').then(res => res.data);
         }
     }
     angular
