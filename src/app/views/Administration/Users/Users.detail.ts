@@ -4,10 +4,14 @@ namespace upk {
     class DetailUserController {
 
         user: User;
+        roles: Role[];
 
-        static $inject: Array<string> = ['UserService', '$location', '$routeParams'];
-        constructor(private UserService: IUserService, private $location: ng.ILocationService, private $routeParams: any) {
+        static $inject: Array<string> = ['UserService', '$location', '$routeParams', 'RoleService'];
+        constructor(private UserService: IUserService, private $location: ng.ILocationService, private $routeParams: any,
+            private RoleService: IRoleService) {
             UserService.getUser($routeParams.id).then(data => this.user = data);
+            RoleService.getRoles().then(data => this.roles = data);
+
         }
 
         save() {

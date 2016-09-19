@@ -29,9 +29,6 @@ namespace upk {
 
         removeToken() {
             localStorage.removeItem('upkeeperData');
-/*            localStorage.removeItem('organization');
-            localStorage.removeItem('organizationName');
-            localStorage.removeItem('organizationId');*/
         }
 
         getUsername() {

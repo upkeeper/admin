@@ -45,8 +45,8 @@ namespace upk {
         };
 
         setCurrentOrganization() {
-            for(let {Name, Number} of this.organizations){
-                if(this.ApiService.organization === Number) {
+            for (let {Name, Number} of this.organizations) {
+                if (this.ApiService.organization === Number) {
                     this.ApiService.setCurrentOrganization(Name);
                 }
             }

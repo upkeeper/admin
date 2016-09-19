@@ -11,9 +11,21 @@ include ../../Shared/Searchbar.jade
                     th Phonenumber
                     th User
             tbody
-                tr(ng-repeat="device in vm.devices | filter:vm.searchvalue | limitTo:app.limit.limit")
+                tr()
                     td()
                         input(type="checkbox" ng-model="device.selected")
-                    td {{device.DeviceName}}
-                    td {{device.PhoneNumber}}
-                    td {{device.USER_NAME}}
+                    td HTC Desire S
+                    td +46766773734
+                    td Peter Johansson
+                tr
+                    td()
+                        input(type="checkbox" ng-model="device.selected")
+                    td Jannes LG G3
+                    td +46705882900
+                    td Janne Larsson
+                tr
+                    td()
+                        input(type="checkbox" ng-model="device.selected")
+                    td Desire 500
+                    td +46705887250
+                    td Magnus Zetterlund

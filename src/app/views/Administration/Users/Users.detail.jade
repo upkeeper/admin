@@ -3,6 +3,8 @@
         ul.nav.nav-tabs(role="tablist")
             li.active(role="presentation")
                 a(data-target="#general" aria-controls="home" role="tab" data-toggle="tab") General
+            li(role="presentation")
+                a(data-target="#roles" aria-controls="home" role="tab" data-toggle="tab") Roles
 .row
     form(name="form" novalidate ng-submit="vm.save()")
         .tab-content
@@ -28,5 +30,62 @@
                             label Description
                             textarea.form-control(type="text" ng-model="vm.user.Description" cols="50", rows="12")
                 include ../../Shared/Savebutton.jade
+            .tab-pane.fade.in#roles
+                h3.page-header Roles
+                .row
+                    .col-xs-12
+                        table.table.table-hover
+                            thead
+                                tr
+                                    th()
+                                        input(type="checkbox")
+                                    th Role
+                                    th Organization
+                            tbody
+                                tr(ng-repeat="role in vm.roles | filter:vm.searchvalue | limitTo:app.limit.limit")
+                                    td()
+                                        input(type="checkbox" ng-model="hardware.selected")
+                                    td {{role§§.Role}}
+                                    td {{role.Organization}}
+                        .row
+                            .col-xs-12
+                                .buttontoolbar
+                                    .btn-group
+                                        input.btn.btn-success#addRolesBtn(type="button" value="Add..." title="Add..." data-toggle="modal" data-target="#addRoles" ng-click="vm.getRoles()")
+                                        input.btn.btn-danger(type="button" value="Remove" ng-click="vm.removeRoles()")
+                                .modal.fade#addRoles(tabindex="-1" role="dialog" aria-labelledby="myModalLabel")
+                                    .modal-dialog(role="document")
+                                        .modal-content
+                                            form#dlgForm
+                                                .modal-header
+                                                    button.close(type="button" data-dismiss="modal" aria-label="Close")
+                                                        span(aria-hidden="true")
+                                                    h4.modal-title#gridSystemModalLabel Add role(s) to user
+                                                    br
+                                                    .form-group
+                                                        .input-group
+                                                            input.form-control(ng-model="vm.modalsearchvalue")
+                                                            span.input-group-btn
+                                                                        button.btn.btn-primary.btn-icon
+                                                                            i.fa.fa-search
+                                                .modal-body
+                                                    table.table.table-hover
+                                                        thead
+                                                            tr
+                                                                th
+                                                                    input(type="checkbox")
+                                                                th Name
+                                                                th Description
+                                                        tbody
+                                                            tr(dir-paginate="hardware in vm.addHardwares | filter: vm.modalsearchvalue | itemsPerPage:10")
+                                                                td
+                                                                    input(type="checkbox" ng-model="hardware.selected")
+                                                                td {{hardware.Name}}
+                                                                td {{hardware.Description}}
+                                                .modal-footer
+                                                    .modal-footer-buttons
+                                                        input.btn.btn-success(title="Add Task" value="Add Hardware" type="button" ng-click="vm.addHardware()" data-dismiss="modal")
+                                                        button.btn.btn-default(data-dismiss="modal") Close
+                                                    dir-pagination-controls(max-size="5" boundary-links="true")
 
 
