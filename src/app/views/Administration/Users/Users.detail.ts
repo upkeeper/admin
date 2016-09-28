@@ -1,7 +1,6 @@
 namespace upk {
     'use strict';
-
-    class DetailUserController {
+    class DetailUsersController {
 
         user: User;
         roles: Role[];
@@ -11,7 +10,6 @@ namespace upk {
             private RoleService: IRoleService) {
             UserService.getUser($routeParams.id).then(data => this.user = data);
             RoleService.getRoles().then(data => this.roles = data);
-
         }
 
         save() {
@@ -25,5 +23,5 @@ namespace upk {
 
     angular
         .module('Upkeeper')
-        .controller('DetailUserController', DetailUserController);
+        .controller('DetailUsersController', DetailUsersController);
 }

@@ -33,6 +33,8 @@ namespace upk {
         }
 
         getUser(id: string): ng.IPromise<User> {
+
+            console.log(id)
             return this.$http.get(this.apiUrl + 'User/' + id).then(res => res.data);
         }
 
@@ -42,11 +44,11 @@ namespace upk {
             return this.$http.post(this.apiUrl + 'User', user);
         }
 
-        updateUser(user: User): ng.IPromise<{}> {
+        updateUser(user: User): ng.IPromise<any> {
             return this.$http.put(this.apiUrl + 'User', user);
         }
 
-        deleteUser(id: string): ng.IPromise<{}> {
+        deleteUser(id: string): ng.IPromise<any> {
             return this.$http.delete(this.apiUrl + 'User/' + id);
         }
 
@@ -60,9 +62,9 @@ namespace upk {
             return this.$http.delete(this.apiUrl + 'User/' + id + '/Roles');
         }
 
-        getDevices() {
+       /* getDevices() {
             return this.$http.get('http://localhost:1338/devices').then(res => res.data);
-        }
+        }*/
     }
     angular
         .module('Upkeeper')

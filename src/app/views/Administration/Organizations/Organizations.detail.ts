@@ -11,11 +11,13 @@ namespace upk {
         }
 
         save() {
-            this.organizationService.updateOrganization(this.organization).then(res => this.$location.path('/Administration/Organizations'));
+            this.organizationService.updateOrganization(this.organization)
+            .then(res => this.$location.path('/Administration/Organizations'));
         }
 
         delete() {
-            this.organizationService.deleteOrganization(this.organization.Id).then(res => this.$location.path('/Administration/Organizations'));
+            this.organizationService.deleteOrganization(this.organization.Id)
+            .then(res => this.$location.path('/Administration/Organizations'));
         }
     }
 

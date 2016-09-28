@@ -1,29 +1,29 @@
-.row
-    .col-xs-6.col-md-3
-        div
-            h3 Computers
-            ul
-                li(ng-repeat="report in vm.reports") 
-                    a(ng-href="{{report.Path}}") {{report.Name}}
-    .col-xs-6.col-md-3
-        div
-            h3 Inventory
-            ul
-                li Licensing report
-                li List all computers
-                li List all software
-    .col-xs-6.col-md-3
-        div
-            h3 Usage Metering
-            ul 
-                li Active computers
-                li Computer hours
-                li Computer usage
-                li Scanned applications
-                li Used applications
-    .col-xs-6.col-md-3
-        div
-            h3 Users
-            ul
-                li List all external users
-                
+section.reports
+    .row
+        .col-xs-6.col-md-3
+            div
+                h3 Computers
+                ul
+                    li(ng-repeat="report in vm.reports | filter: {Group:'Computers'}") 
+                        a(ng-href="{{report.Path}}" target="_blank") {{report.Name}}
+        .col-xs-6.col-md-3
+            div
+                h3 Inventory
+                ul
+                    li(ng-repeat="report in vm.reports | filter: {Group:'Inventory'}") 
+                        a(ng-href="{{report.Path}}" target="_blank") {{report.Name}}
+        .col-xs-6.col-md-3
+            div
+                h3 Usage Metering
+                ul 
+                    ul
+                    li(ng-repeat="report in vm.reports | filter: {Group:'Usage Metering'}") 
+                        a(ng-href="{{report.Path}}" target="_blank") {{report.Name}}
+        .col-xs-6.col-md-3
+            div
+                h3 Users
+                ul
+                    ul
+                    li(ng-repeat="report in vm.reports | filter: {Group:'Users'}") 
+                        a(ng-href="{{report.Path}}" target="_blank") {{report.Name}}
+                    

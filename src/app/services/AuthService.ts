@@ -33,11 +33,9 @@ namespace upk {
             this.$http.post(this.baseUrl + 'token', data,
                 { headers: { 'Content-Type': 'application/x-www-form-urlencoded' } }).then((res: any) => {
                     this._authentication.isAuth = true;
-
                     localStorage.setItem('upkeeperData', JSON.stringify(res.data));
                     deferred.resolve(res);
                 }, err => {
-                    console.log(err);
                     deferred.reject(err);
                 });
             return deferred.promise;

@@ -45,7 +45,7 @@
                                 tr(ng-repeat="role in vm.roles | filter:vm.searchvalue | limitTo:app.limit.limit")
                                     td()
                                         input(type="checkbox" ng-model="hardware.selected")
-                                    td {{role§§.Role}}
+                                    td {{role.Name}}
                                     td {{role.Organization}}
                         .row
                             .col-xs-12
@@ -86,6 +86,3 @@
                                                     .modal-footer-buttons
                                                         input.btn.btn-success(title="Add Task" value="Add Hardware" type="button" ng-click="vm.addHardware()" data-dismiss="modal")
                                                         button.btn.btn-default(data-dismiss="modal") Close
-                                                    dir-pagination-controls(max-size="5" boundary-links="true")
-
-

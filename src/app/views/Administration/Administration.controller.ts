@@ -9,8 +9,11 @@ namespace upk {
         system: ISystemInformation;
         settings: any;
 
-        static $inject: Array < string > = ['messageService', 'configurationService', 'SettingsService'];
-        constructor(private messageService: IMessageService, private configurationService: IConfigurationService, private SettingsService: ISettingsService) {
+        static $inject: Array<string> = ['messageService', 'configurationService', 'SettingsService'];
+        constructor(
+            private messageService: IMessageService,
+            private configurationService: IConfigurationService,
+            private SettingsService: ISettingsService) {
             messageService.getGlobalMessages().then(data => this.messages = data);
             configurationService.getSystemInformation().then(res => this.system = res);
             SettingsService.getGeneralSettings().then(data => this.settings = data);

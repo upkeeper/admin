@@ -2,7 +2,7 @@ namespace upk {
     'use strict';
 
     class AdminUsersController {
-        users: Array<User>
+        users: Array<User>;
         static $inject: Array<string> = ['UserService', '$location'];
         constructor(private UserService: IUserService, private $location: ng.ILocationService) {
             UserService.getUsers().then(data => this.users = data);

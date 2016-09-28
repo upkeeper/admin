@@ -7,7 +7,7 @@
                         templateUrl: 'views/app/views/Administration/Administration.home.html',
                         controller: 'AdministrationController',
                         controllerAs: 'vm',
-                        resolve: { 'administration': () => { return true;; } }
+                        resolve: { 'administration': () => { return true; ; } }
                     })
                     .when('/Administration/Users', {
                         templateUrl: 'views/app/views/Administration/Users/Users.home.html',
@@ -23,7 +23,7 @@
                     })
                     .when('/Administration/Users/Detail/:id', {
                         templateUrl: 'views/app/views/Administration/Users/Users.detail.html',
-                        controller: 'DetailUserController',
+                        controller: 'DetailUsersController',
                         controllerAs: 'vm',
                         resolve: { 'administration': () => { return true; } }
                     })
@@ -79,7 +79,7 @@
                         controller: 'LicenseController',
                         controllerAs: 'vm',
                         resolve: { 'administration': () => { return true; } }
-                    })
+                    });
             }
-        ])
+        ]);
 })();
