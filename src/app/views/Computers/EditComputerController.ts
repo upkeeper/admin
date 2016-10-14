@@ -15,10 +15,18 @@ namespace upk {
         instantFunctions: any;
         cmModel: any;
         selectedInstantFunction: string;
-        timer: any;
+        logtimer: any;
+        clienttimer: any;
         mergedSettings: any;
 
         addApplications: Application[];
+
+        assignments = [
+            { value: 1, text: 'Disabled' },
+            { value: 0, text: 'Normal' },
+            { value: 2, text: 'Reinstall' },
+            { value: 3, text: 'Reinstall from scratch' }
+        ];
 
         static $inject: Array<String> = ['$location', '$routeParams', 'computerService', 'tokenService', '$alert', '$timeout', '$scope'];
         constructor(private $location: ng.ILocationService,
@@ -38,8 +46,10 @@ namespace upk {
             computerService.getMergedSettings(this.$routeParams.id).then(data => this.mergedSettings = data);
 
             this.getLogLoop();
+            this.getClientLoop();
             $scope.$on('$destroy', event => {
-                this.$timeout.cancel(this.timer);
+                this.$timeout.cancel(this.logtimer);
+                this.$timeout.cancel(this.clienttimer);
             });
         }
 
@@ -165,7 +175,7 @@ namespace upk {
         }
 
         runInstantFunction() {
-            this.computerService.postInstantFunction(this.computer.Id, this.selectedInstantFunction, this.tokenService.getUsername())
+            this.computerService.postInstantFunction(this.computer.Id, this.selectedInstantFunction)
                 .then(res => {
                     if (res.statusText == 'OK') {
                         this.$alert({
@@ -183,12 +193,21 @@ namespace upk {
         }
 
         getLogLoop() {
-            this.timer = this.$timeout(() => {}, 20000);
-            this.timer.then(() => {
+            this.logtimer = this.$timeout(() => { }, 20000);
+            this.logtimer.then(() => {
                 this.computerService.getComputerEvents(this.$routeParams.id).then(data => this.events = data);
                 this.getLogLoop();
-            }, err => {});
+            }, err => { });
         }
+
+        getClientLoop() {
+            this.clienttimer = this.$timeout(() => { }, 10000);
+            this.clienttimer.then(() => {
+                this.computerService.getComputerDetail(this.$routeParams.id).then(data => this.computer = data);
+                this.getClientLoop();
+            }, err => { });
+        }
+
 
         getMergedSettigns() {
             this.computerService.getMergedSettings(this.$routeParams.id).then(data => this.mergedSettings = data);

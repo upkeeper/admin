@@ -11,13 +11,14 @@ namespace upk {
         toggleLicenses = true;
         toggleInstalled = true;
         cols: any;
+        selectedAll: boolean;
 
         static $inject = ['$location', 'applicationService', 'organizationService', 'PermissionService'];
         constructor(private $location: ng.ILocationService,
             private applicationService: IApplicationService,
             private organizationService: IOrganizationService,
             private PermissionService: IPermissionService) {
-                
+
             applicationService.getApplications().then(data => this.applications = data);
             this.cols =
                 [
@@ -34,13 +35,29 @@ namespace upk {
             this.$location.path('/Applications/Create');
         }
 
-        delete(application) {
-            this.applicationService.removeApplication(application);
+        delete() {
+            angular.forEach(this.applications, item => {
+                if (item.selected) {
+                    this.applicationService.removeApplication(item.Id);
+                }
+            });
+            this.applicationService.getApplications().then(data => this.applications = data);
         }
 
         editApplication(application) {
             if (this.PermissionService.HasPermission('Application_Create_Edit'))
                 this.$location.path("/Applications/" + application.Id);
+        }
+
+        checkAll() {
+            if (this.selectedAll) {
+                this.selectedAll = true;
+            } else {
+                this.selectedAll = false;
+            }
+            angular.forEach(this.computers, item => {
+                item.selected = this.selectedAll;
+            });
         }
     }
     angular.module('Upkeeper')

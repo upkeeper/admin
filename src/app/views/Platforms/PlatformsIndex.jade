@@ -1,5 +1,7 @@
 include ../Shared/Searchbar.jade
 .row
+    label.total_items Showing {{app.limit.limit}} of total {{vm.platforms.length}}
+.row
     table.table.table-hover.table-striped
         thead
             tr

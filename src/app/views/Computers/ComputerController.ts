@@ -18,6 +18,8 @@ namespace upk {
         functions: Array<UpkFunction>;
         selectedTask: any;
 
+        
+
         computers: Array<Computer>;
 
         static $inject = ['$rootScope', '$location', 'computerService', 'taskService',
@@ -89,6 +91,15 @@ namespace upk {
         create() {
             this.$location.path('/Computers/Create');
         };
+
+        delete() {
+            angular.forEach(this.computers, item => {
+                if (item.selected) {
+                    this.computerService.removeComputer(item.Id);
+                }
+            })
+            this.computerService.getComputers().then(data => this.computers = data);
+        }
 
         runInstantTask() {
             let selectedComputers = [];

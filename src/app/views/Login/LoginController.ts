@@ -5,7 +5,7 @@ namespace upk {
         loginError: string;
 
         public static $inject = ['$location', 'authService', 'ApiService'];
-        constructor(private $location, private authService: IAuthService, private ApiService: IApiService) {
+        constructor(private $location: any, private authService: IAuthService, private ApiService: IApiService) {
             this.credentials = {
                 username: '',
                 password: ''

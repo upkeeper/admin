@@ -3,13 +3,12 @@ namespace upk {
         getToken(): Token;
         tokenExpired(): boolean;
         removeToken(): void;
+        getOrganizations(): any;
         getOrganizationNumber(): string;
         getUsername(): string;
     }
 
     class TokenService implements ITokenService {
-        constructor() {}
-
         getToken(): Token {
             var token: Token = JSON.parse(localStorage.getItem('upkeeperData'));
             if (token) {
@@ -20,6 +19,14 @@ namespace upk {
 
         getOrganizationNumber(): string {
             return localStorage.getItem('organization');
+        }
+
+        getOrganizations(): Array<Organization> {
+            var token: Token = JSON.parse(localStorage.getItem('upkeeperData'));
+            console.log(token.user_organizations);
+            if (token) {
+                return token.user_organizations;
+            }
         }
 
         tokenExpired() {

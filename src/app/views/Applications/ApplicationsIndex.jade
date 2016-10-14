@@ -1,5 +1,7 @@
 include ../Shared/Searchbar.jade
 .row
+    label.total_items Showing {{app.limit.limit}} of total {{vm.applications.length}}
+.row
     .form-inline(ng-show="vm.sortitems")
         .form-group
             input(type="checkbox" ng-model="vm.toggleName")
@@ -22,6 +24,8 @@ include ../Shared/Searchbar.jade
     table.table.table-hover.table-striped
         thead
             tr
+                th.tablecheckbox
+                        input(type="checkbox" ng-model="vm.selectedAll" ng-click="vm.checkAll()")
                 th(ng-show="vm.toggleName") Name
                 th(ng-show="vm.toggleVersion") Version
                 th(ng-show="vm.toggleDescription") Description
@@ -30,10 +34,12 @@ include ../Shared/Searchbar.jade
                 th(ng-show="vm.toggleInstalled") Installed
         tbody
             tr(dir-paginate="app in vm.applications | filter:vm.searchvalue | itemsPerPage:app.limit.limit")
+                td.tablecheckbox
+                        input(type="checkbox" ng-model="app.selected")
                 td(ng-show="vm.toggleName" ng-click="vm.editApplication(app)") {{app.Name}}
                 td(ng-show="vm.toggleVersion") {{app.Version}}
                 td(ng-show="vm.toggleDescription") {{app.Description}}
                 td(ng-show="vm.togglePriority") {{app.Priority}}
                 td(ng-show="vm.toggleLicenses") {{app.Licenses}}
                 td(ng-show="vm.toggleInstalled") {{app.Installed}}
-pagination-bar(create-permission="'Application_Create_Edit'" create-item="vm.create()")
+pagination-bar(create-permission="'Application_Create_Edit'" create-item="vm.create()" delete-items="vm.delete()")

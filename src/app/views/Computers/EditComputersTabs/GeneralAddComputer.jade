@@ -15,10 +15,12 @@ h3.page-header General
             input.form-control(ng-model="vm.computer.MACAddress")
         .form-group
             label Hardware
-            input.form-control(ng-model="vm.computer.HardwareName")
+            select.form-control(ng-model="vm.computer.HardwareId")
+                option(ng-repeat="hardware in vm.hardwares" value="{{hardware.Id}}") {{hardware.Name}}
         .form-group
             label Platform
-            input.form-control(ng-model="vm.computer.PlatformName")
+            select.form-control(ng-model="vm.computer.PlatformId")
+                option(ng-repeat="platform in vm.platforms" value="{{platform.Id}}") {{platform.DisplayName}}
         .form-group
             label Username
             input.form-control(ng-model="vm.computer.UserName")
@@ -27,12 +29,7 @@ h3.page-header General
             input.form-control(ng-model="vm.computer.Location")
         .form-group
             label Assignment
-            select.form-control(ng-model="vm.computer.assignment")
-                option Disabled
-                option Normal
-                option Reinstall
-                option Reinstall from scratch
-                
+            select.form-control(ng-model="vm.computer.ClientInformation.Assignment" ng-options="item.value as item.text for item in vm.assignments")
     .col-xs-6
         .form-group
             label Description

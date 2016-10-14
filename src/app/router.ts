@@ -11,7 +11,7 @@
             '$routeProvider', '$locationProvider', ($routeProvider, $locationProvider) => {
                 $routeProvider
                     .when('/', {
-                        redirectTo: '/Home'
+                        redirectTo: '/Login'
                     })
                     .when('/Login', {
                         templateUrl: 'views/app/views/Login/Login.html',
@@ -199,6 +199,9 @@
                 authService.fillAuthData();
 
                 $rootScope.$on('$routeChangeStart', (event, next, current) => {
+                    if(next.$$route.originalPath === '/Login' && authService.isAuthenticated){
+                        $location.path('/Home');
+                    }
                     authService.fillAuthData();
                 });
             }]);

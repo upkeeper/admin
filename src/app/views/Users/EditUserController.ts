@@ -1,6 +1,7 @@
 namespace upk {
     class EditUserController {
         user: User;
+        roles: Role[];
 
         static $inject = ['$location', '$routeParams', 'UserService']
         constructor(private $location: ng.ILocationService, private $routeParams, private UserService: IUserService) {

@@ -5,6 +5,7 @@ namespace upk {
         Description: string;
         Deleted: boolean;
         UserOrganizationRoles: Array<any>;
-        Permissions: Array<Permission>
+        Permissions: Array<Permission>;
+        selected: boolean;
     }
 }

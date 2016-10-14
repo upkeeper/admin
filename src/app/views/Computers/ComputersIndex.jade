@@ -1,5 +1,6 @@
 include ../Shared/Computersearchbar.jade
-
+.row
+    label.total_items Showing {{app.limit.limit}} of total {{vm.computers.length}}
 .row
     table.table.table-hover.table-striped.computertable
             thead
@@ -33,6 +34,7 @@ include ../Shared/Computersearchbar.jade
                     td.computerstatus(ng-click="vm.editComputer(comp)")
                         i.fa.fa-wrench(ng-show="comp.Status==0" data-placement="top" title="New computer, installation not started.")
                     td.computerapplication(ng-click="vm.editComputer(comp)")
+                        i.fa.fa-warning(ng-show="!comp.ApplicationStatus" data-placement="top" title="At least one application install/uninstall has failed.\nCheck application list for details.")
                     td.computername(ng-click="vm.editComputer(comp)") {{comp.Name}}
                     td.computeronline
                         i.fa.fa-circle(ng-class="vm.getComputerConnectionStatus(comp.ConnectionStatus)")
@@ -42,4 +44,4 @@ include ../Shared/Computersearchbar.jade
                     td.computerhardware {{comp.HardwareName}}
                     td.computerplatform.hidden-xs.hidden-sm {{comp.PlatformName}}
                     td.computeruser.hidden-xs.hidden-sm {{comp.LastLoggedInUser}}
-pagination-bar(create-permission="'Computer_Create_Edit'" create-item="vm.create()")
+pagination-bar(create-permission="'Computer_Create_Edit'" create-item="vm.create()" delete-items="vm.delete()")

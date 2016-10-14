@@ -77,12 +77,12 @@
                                                                 th Name
                                                                 th Description
                                                         tbody
-                                                            tr(dir-paginate="hardware in vm.addHardwares | filter: vm.modalsearchvalue | itemsPerPage:10")
+                                                            tr(dir-paginate="role in vm.addRoles | filter: vm.modalsearchvalue | itemsPerPage:10")
                                                                 td
-                                                                    input(type="checkbox" ng-model="hardware.selected")
-                                                                td {{hardware.Name}}
-                                                                td {{hardware.Description}}
+                                                                    input(type="checkbox" ng-model="role.selected")
+                                                                td {{role.Name}}
+                                                                td {{role.Organization}}
                                                 .modal-footer
                                                     .modal-footer-buttons
-                                                        input.btn.btn-success(title="Add Task" value="Add Hardware" type="button" ng-click="vm.addHardware()" data-dismiss="modal")
+                                                        input.btn.btn-success(title="Add Role" value="Add Role" type="button" ng-click="vm.addRole()" data-dismiss="modal")
                                                         button.btn.btn-default(data-dismiss="modal") Close

@@ -17,9 +17,16 @@ namespace upk {
         public organizationId: string;
         public organizationName: string;
 
-        static $inject: Array<string> = ['organizationService', '$rootScope', 'CONFIG', '$window', '$q', 'PermissionService'];
-        constructor(private organizationService: IOrganizationService, private $rootScope, private CONFIG: config.IConfig,
-            private $window, private $q: ng.IQService, private PermissionService: IPermissionService) {
+        static $inject: Array<string> = ['tokenService', 'UserService', 'organizationService',
+            '$rootScope', 'CONFIG', '$window', '$q', 'PermissionService'];
+        constructor(private tokenService: ITokenService,
+            private userService: IUserService,
+            private organizationService: IOrganizationService,
+            private $rootScope: any,
+            private CONFIG: config.IConfig,
+            private $window: any,
+            private $q: ng.IQService,
+            private PermissionService: IPermissionService) {
         }
 
         setApiUrl() {
@@ -38,7 +45,26 @@ namespace upk {
             this.organization = localStorage.getItem('organization');
             this.organizationId = localStorage.getItem('organizationId');
             this.organizationName = localStorage.getItem('organizationName');
-            this.organizationService.getOrganizations().then(res => {
+            if (this.organization) {
+                this.$rootScope.currentOrganization = localStorage.getItem('organizationId');
+                this.$rootScope.currentOrgName = localStorage.getItem('organizationName');
+                this.setApiUrl();
+                this.PermissionService.Login();
+            } else {
+                const token = this.tokenService.getOrganizations();
+                this.organization = token[0].Number;
+                this.organizationId = token[0].Id;
+                this.organizationName = token[0].Name;
+                localStorage.setItem('organization', token[0].Number);
+                localStorage.setItem('organizationId', token[0].Id);
+                localStorage.setItem('organizationName', token[0].Name);
+                this.$rootScope.currentOrganization = token[0].Id;
+                this.setApiUrl();
+                this.PermissionService.Login();
+            }
+            deferred.resolve();
+            /*this.tokenService.getOrganizations().then(res => {
+                console.log(res);
                 if (this.organization) {
                     this.$rootScope.currentOrganization = localStorage.getItem('organizationId');
                     this.$rootScope.currentOrgName = localStorage.getItem('organizationName');
@@ -56,7 +82,7 @@ namespace upk {
                     this.PermissionService.Login();
                 }
                 deferred.resolve();
-            });
+            });*/
             return deferred.promise;
         }
 

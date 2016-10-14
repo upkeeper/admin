@@ -70,12 +70,7 @@ h3.page-header General
             input.form-control(ng-model="vm.computer.Location")
         .form-group
             label Assignment
-            select.form-control(ng-model="vm.computer.assignment")
-                option Disabled
-                option Normal
-                option Reinstall
-                option Reinstall from scratch
-                
+            select.form-control(ng-model="vm.computer.ClientInformation.Assignment" ng-options="item.value as item.text for item in vm.assignments")
     .col-xs-6
         .form-group
             label Description

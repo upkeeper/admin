@@ -9,7 +9,7 @@ namespace upk {
         removeComputer(id: string): ng.IHttpPromise<{}>;
         updateComputer(id: string, computer: Computer): ng.IHttpPromise<{}>;
         getInstantFunctions(id: string): ng.IPromise<UpkFunction[]>;
-        postInstantFunction(computerId: string, functionId: string, username: string): ng.IHttpPromise<UpkFunction>;
+        postInstantFunction(computerId: string, functionId: string): ng.IHttpPromise<UpkFunction>;
         postInstantFunctions(computerIds: Array<string>, functionId: string): ng.IPromise<any>;
         getListHardwares(id: string): ng.IHttpPromise<Hardware[]>;
         getListPlatforms(id: string): ng.IHttpPromise<Platform[]>;
@@ -64,9 +64,9 @@ namespace upk {
             return this.$http.get(this.apiUrl + 'Computer/' + id + '/InstantFunctions').then(res => res.data);
         };
 
-        postInstantFunction(id: string, functionId: string, username: string) {
-            return this.$http.post(this.apiUrl + 'Computer/' + id + '/InstantTasks?functionId=' +
-                functionId + '&userName=' + username, null);
+        postInstantFunction(id: string, functionId: string) {
+            return this.$http.post(this.apiUrl + 'Computer/' + id + '/InstantTask/' +
+                functionId, null);
         };
 
         postInstantFunctions(computerIds: Array<string>, functionId: string) {

@@ -9,10 +9,11 @@ namespace upk {
         updateUser(user: User): ng.IPromise<{}>;
         deleteUser(id: string): ng.IPromise<{}>;
 
-        getUserRoles(id: string): ng.IPromise<Array<Role>>;
+        getUserRoles(id: string, member: boolean): ng.IPromise<Role[]>;
         addUserRole(id: string, rolesId: Array<String>): ng.IPromise<{}>;
+        addUserRoles(id: string, roles: Role[]);
         deleteUserRole(id: string): ng.IPromise<{}>;
-        getDevices(): ng.IPromise<any>;
+        getUserOrganizations(id: string): ng.IPromise<any>;
 
 
     }
@@ -33,10 +34,13 @@ namespace upk {
         }
 
         getUser(id: string): ng.IPromise<User> {
-
-            console.log(id)
             return this.$http.get(this.apiUrl + 'User/' + id).then(res => res.data);
         }
+
+        getUserOrganizations(id: string) {
+            return this.$http.get(this.apiUrl + 'User/' + id + '/Organizations');
+        }
+
 
         addUser(user: User): ng.IPromise<any> {
             user.Deleted = false;
@@ -52,19 +56,22 @@ namespace upk {
             return this.$http.delete(this.apiUrl + 'User/' + id);
         }
 
-        getUserRoles(id: string): ng.IPromise<Array<Role>> {
-            return this.$http.get(this.apiUrl + 'User/' + id).then(res => res.data);
+        getUserRoles(id: string, member: boolean): ng.IPromise<Array<Role>> {
+            return this.$http.get(this.apiUrl + 'User/' + id + '/Roles?member=' + member).then(res => res.data);
         }
         addUserRole(id: string, rolesId: Array<String>) {
             return this.$http.get(this.apiUrl + 'User/' + id);
+        }
+        addUserRoles(id: string, roles: Role[]) {
+            return this.$http.post(this.apiUrl + 'User/' + id + '/Roles', roles);
         }
         deleteUserRole(id: string): ng.IPromise<{}> {
             return this.$http.delete(this.apiUrl + 'User/' + id + '/Roles');
         }
 
-       /* getDevices() {
-            return this.$http.get('http://localhost:1338/devices').then(res => res.data);
-        }*/
+        /* getDevices() {
+             return this.$http.get('http://localhost:1338/devices').then(res => res.data);
+         }*/
     }
     angular
         .module('Upkeeper')

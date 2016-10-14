@@ -1,11 +1,22 @@
 module upk {
     class AddComputerController {
         computer: Computer;
+        hardwares: Hardware[];
+        platforms: Platform[];
 
-        static $inject = ['$location', 'computerService'];
+        assignments = [
+            { value: 1, text: 'Disabled' },
+            { value: 0, text: 'Normal' },
+            { value: 2, text: 'Reinstall' },
+            { value: 3, text: 'Reinstall from scratch' }
+        ];
 
-        constructor(private $location: ng.ILocationService, private computerService: IComputerService) {
+        static $inject = ['$location', 'computerService', 'hardwareService', 'platformService'];
 
+        constructor(private $location: ng.ILocationService, private computerService: IComputerService,
+            private hardwareService: IHardwareService, private platformService: IPlatformService) {
+            hardwareService.getHardwares().then(res => this.hardwares = res.data);
+            platformService.getPlatforms().then(res => this.platforms = res.data);
         }
 
         save() {

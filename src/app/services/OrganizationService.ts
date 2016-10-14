@@ -30,7 +30,6 @@ namespace upk {
             if (!organization.AutoRegisterClients) {
                 organization.AutoRegisterClients = false;
             }
-            //organization.Number = Math.floor((Math.random() * 10000) + 1).toString();
             return this.$http.post(this.apiUrl + 'Organization', organization);
         };
 
