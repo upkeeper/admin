@@ -10,19 +10,19 @@ namespace upk {
         constructor(private UserService: IUserService, private $location: ng.ILocationService, private $routeParams: any,
             private RoleService: IRoleService) {
             UserService.getUser($routeParams.id).then(data => this.user = data);
-            UserService.getUserRoles($routeParams.id, true).then(data => this.roles = data));
+            UserService.getUserRoles($routeParams.id, true).then(data => this.roles = data);
         }
 
         save() {
-            this.UserService.updateUser(this.user).then(res => this.$location.path('/Administration/Users'))
+            this.UserService.updateUser(this.user).then(res => this.$location.path('/Administration/Users'));
         }
 
         delete() {
-            this.UserService.deleteUser(this.user.Id).then(res => this.$location.path('/Administration/Users'))
+            this.UserService.deleteUser(this.user.Id).then(res => this.$location.path('/Administration/Users'));
         }
 
         getRoles() {
-            this.UserService.getUserRoles(this.$routeParams.id, false).then(data => this.addRoles = data));
+            this.UserService.getUserRoles(this.$routeParams.id, false).then(data => this.addRoles = data);
         }
 
         addRole() {

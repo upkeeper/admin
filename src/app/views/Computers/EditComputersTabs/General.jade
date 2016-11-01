@@ -10,9 +10,9 @@ h3.page-header Client actions
                     button.btn.btn-primary.btn-icon(ng-click="vm.runInstantFunction()")
                         i.fa.fa-paper-plane
     .col-xs-6.remotebuttons
-        a.btn.btn-primary(href="/Config/{{vm.computer.Name}}.rdp")
+        a.btn.btn-primary(ng-click="vm.getComputerRdp()")
             i.fa.fa-desktop.fa-2x()
-        a.btn.btn-primary(href="/Config/{{vm.computer.Name}}.cmd")
+        a.btn.btn-primary(ng-click="vm.getComputerVnc()")
             i.fa.fa-windows.fa-2x()
                     
 h3.page-header Client information

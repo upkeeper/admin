@@ -2,7 +2,7 @@ namespace upk {
     class LoginController {
 
         credentials;
-        loginError: string;
+        loginError: boolean;
 
         public static $inject = ['$location', 'authService', 'ApiService'];
         constructor(private $location: any, private authService: IAuthService, private ApiService: IApiService) {
@@ -22,9 +22,13 @@ namespace upk {
                 }
             },
                 err => {
-                    this.loginError = err;
+                    this.loginError = true;
                 });
         };
+
+        removeError(){
+            this.loginError = false;
+        }
 
 
     }

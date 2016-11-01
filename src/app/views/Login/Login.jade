@@ -2,8 +2,8 @@
 	.login-form
 		form.form-signin(name="upkeeperloginForm" ng-submit="vm.login(vm.credentials)" novalidate)
 			img(src="/images/logowhite.png")
-			input.form-control.username(type="text" id="username" ng-model="vm.credentials.username" placeholder="Username" autofocus)
-			input.form-control.password(type="password" id="password" ng-model="vm.credentials.password" placeholder="Password")
+			input.form-control.username(type="text" id="username" ng-model="vm.credentials.username" placeholder="Username" ng-change="vm.removeError()" autofocus)
+			input.form-control.password(type="password" id="password" ng-model="vm.credentials.password" placeholder="Password" ng-change="vm.removeError()")
 			div.footer
 				span Ver: 4.0.2
 			div.error(ng-show="vm.loginError")

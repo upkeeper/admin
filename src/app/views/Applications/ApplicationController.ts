@@ -35,7 +35,7 @@ namespace upk {
             this.$location.path('/Applications/Create');
         }
 
-        delete() {
+        deleteItems() {
             angular.forEach(this.applications, item => {
                 if (item.selected) {
                     this.applicationService.removeApplication(item.Id);

@@ -44,4 +44,4 @@ include ../Shared/Computersearchbar.jade
                     td.computerhardware {{comp.HardwareName}}
                     td.computerplatform.hidden-xs.hidden-sm {{comp.PlatformName}}
                     td.computeruser.hidden-xs.hidden-sm {{comp.LastLoggedInUser}}
-pagination-bar(create-permission="'Computer_Create_Edit'" create-item="vm.create()" delete-items="vm.delete()")
+pagination-bar(create-permission="'Computer_Create_Edit'" create-item="vm.create()" delete-items="vm.deleteItems()")

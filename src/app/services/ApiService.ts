@@ -8,6 +8,7 @@ namespace upk {
 
         setCurrentOrganization(orgname: string): void;
         setLoginParameters(): ng.IPromise<any>;
+        getOrganizationSummary(): ng.IPromise<any>;
         logout(): void;
         login(): void;
     }
@@ -18,7 +19,7 @@ namespace upk {
         public organizationName: string;
 
         static $inject: Array<string> = ['tokenService', 'UserService', 'organizationService',
-            '$rootScope', 'CONFIG', '$window', '$q', 'PermissionService'];
+            '$rootScope', 'CONFIG', '$window', '$q', 'PermissionService', '$http'];
         constructor(private tokenService: ITokenService,
             private userService: IUserService,
             private organizationService: IOrganizationService,
@@ -26,7 +27,8 @@ namespace upk {
             private CONFIG: config.IConfig,
             private $window: any,
             private $q: ng.IQService,
-            private PermissionService: IPermissionService) {
+            private PermissionService: IPermissionService,
+            private $http: ng.IHttpService) {
         }
 
         setApiUrl() {
@@ -42,16 +44,20 @@ namespace upk {
 
         setLoginParameters() {
             var deferred = this.$q.defer();
+            let token: any = this.tokenService.getOrganizations();
             this.organization = localStorage.getItem('organization');
             this.organizationId = localStorage.getItem('organizationId');
             this.organizationName = localStorage.getItem('organizationName');
             if (this.organization) {
+                token = JSON.parse(token);
+                if (this.organizationName) {
+                    this.organizationId = token.filter(o => o.Name === this.organizationName)[0].Id;
+                }
                 this.$rootScope.currentOrganization = localStorage.getItem('organizationId');
                 this.$rootScope.currentOrgName = localStorage.getItem('organizationName');
                 this.setApiUrl();
                 this.PermissionService.Login();
             } else {
-                const token = this.tokenService.getOrganizations();
                 this.organization = token[0].Number;
                 this.organizationId = token[0].Id;
                 this.organizationName = token[0].Name;
@@ -92,6 +98,15 @@ namespace upk {
 
         login() {
             this.setLoginParameters();
+        }
+
+        getOrganizationSummary() {
+            let now = moment().format('YYYY-MM-DD');
+            let earlier = moment().subtract(3, 'months').format('YYYY-MM-DD');
+            console.log(this.organizationId)
+            return this.$http.get(this.CONFIG.apiUrl + 'Organization/' + this.organizationId + '/Summary?startDate=' +
+                earlier + '&endDate=' + now)
+                .then(res => res.data);
         }
     }
     angular

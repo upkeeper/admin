@@ -3,7 +3,7 @@ namespace upk {
     export interface IMessageService {
         getMessages(): ng.IPromise<Message[]>;
         getGlobalMessages(): ng.IPromise<Message[]>;
-        getMessage(id: string, messageId: string): ng.IPromise<Message>;
+        getMessage(id: string): ng.IPromise<Message>;
         deleteMessage(messageId: string): ng.IHttpPromise<{}>;
         saveMessage(message: Message): ng.IHttpPromise<{}>;
         saveGlobalMessage(message: Message): ng.IHttpPromise<{}>;
@@ -15,7 +15,10 @@ namespace upk {
 
         static $inject = ['$http', 'CONFIG', 'ApiService', 'organizationService'];
 
-        constructor(private $http: ng.IHttpService, private CONFIG: config.IConfig, private ApiService: IApiService, private OrganizationService: IOrganizationService) {
+        constructor(private $http: ng.IHttpService,
+            private CONFIG: config.IConfig,
+            private ApiService: IApiService,
+            private OrganizationService: IOrganizationService) {
             this.apiUrl = CONFIG.apiUrl;
         };
 
@@ -26,8 +29,8 @@ namespace upk {
             return this.$http.get(this.apiUrl + 'Organization/Messages?onlyGlobal=true').then(res => res.data);
         };
 
-        getMessage(id: string, messageId: string): ng.IPromise<Message> {
-            return this.$http.get(this.apiUrl + 'Organization/Message/' + id + '?messageId=' + messageId).then(res => res.data);
+        getMessage(id: string): ng.IPromise<Message> {
+            return this.$http.get(this.apiUrl + 'Organization/Message/' + id).then(res => res.data);
         };
 
         deleteMessage(id: string) {

@@ -11,7 +11,6 @@ namespace upk {
 
     class CategoryService implements ICategoryService {
         apiUrl: string;
-        organization: string;
 
         static $inject: Array<string> = ['$http', 'CONFIG',];
         constructor(private $http: ng.IHttpService, private CONFIG: config.IConfig, private ApiService:IApiService) {

@@ -8,7 +8,7 @@ namespace upk {
         static $inject = ['$location', 'applicationService', '$scope', '$rootScope'];
         constructor(private $location: ng.ILocationService, private applicationService: IApplicationService,
             private $scope: ng.IScope, private $rootScope: IUpkRootScope) {
-            let date = new Date();
+            let date = moment().format('YYYY-MM-DD HH:mm');
 
             this.application = { PackageDate: date, PublishTime: date, OrganizationId: this.$rootScope.currentOrganization };
             this.InstallConditions = this.applicationService.InstallConditions;
@@ -18,8 +18,9 @@ namespace upk {
             $(function () {
                 $('#datetimepicker2').datetimepicker();
                 $("#datetimepicker2").on("dp.change", function (e) {
+                    var time = moment(e.date).format('YYYY-MM-DD HH:mm');
+                    this.application.PublishTime = time;
                     this.$scope.$apply(() => {
-                        this.application.PublishTime = e.date.format('YYYY-MM-DD HH:mm');
                     })
                 });
             });

@@ -26,6 +26,8 @@ namespace upk {
         getUpdateInventory(id: string): ng.IPromise<any>;
         getMergedSettings(id: string): ng.IPromise<any>;
         getComputerExported(computers: string[]): ng.IPromise<any>;
+        getComputerRdp(computerName: string): ng.IPromise<any>;
+        getComputerVnc(computerName: string): ng.IPromise<any>;
     }
     class ComputerService implements IComputerService {
         apiUrl: string;
@@ -144,6 +146,16 @@ namespace upk {
         getComputerExported(computersIds: string[]) {
             return this.$http.post(this.apiUrl + 'Computers/Export', computersIds);
         }
+
+        getComputerRdp(computerName: string) {
+            return this.$http.get(`${this.apiUrl}Config/RDP?computerName=${computerName}`).then(res => res.data);
+        }
+
+        getComputerVnc(computerName: string) {
+            return this.$http.get(`${this.apiUrl}Config/Vnc?computerName=${computerName}
+            &teamViewerId=${computerName}`).then(res => res.data);
+        }
+
     }
     angular.module('Upkeeper')
         .service('computerService', ComputerService);

@@ -42,4 +42,4 @@ include ../Shared/Searchbar.jade
                 td(ng-show="vm.togglePriority") {{app.Priority}}
                 td(ng-show="vm.toggleLicenses") {{app.Licenses}}
                 td(ng-show="vm.toggleInstalled") {{app.Installed}}
-pagination-bar(create-permission="'Application_Create_Edit'" create-item="vm.create()" delete-items="vm.delete()")
+pagination-bar(create-permission="'Application_Create_Edit'" create-item="vm.create()" delete-items="vm.deleteItems()")

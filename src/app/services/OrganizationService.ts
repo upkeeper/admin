@@ -6,7 +6,7 @@ namespace upk {
         addOrganization(organization: Organization): ng.IHttpPromise<{}>;
         updateOrganization(organization: Organization): ng.IHttpPromise<{}>;
         deleteOrganization(organization: string): ng.IHttpPromise<{}>;
-        getOrganizationSummary(organizationId: string): ng.IPromise<any>;
+
     }
 
     export class OrganizationService implements IOrganizationService {
@@ -15,7 +15,7 @@ namespace upk {
         static $inject = ['$http', 'CONFIG'];
 
         constructor(private $http: ng.IHttpService, CONFIG: config.IConfig) {
-            this.apiUrl = CONFIG.apiUrl
+            this.apiUrl = CONFIG.apiUrl;
         };
 
         getOrganization(organizationId: string) {
@@ -40,12 +40,6 @@ namespace upk {
         deleteOrganization(organizationId: string) {
             return this.$http.delete(this.apiUrl + 'Organization?id=' + organizationId);
         };
-
-        getOrganizationSummary(organizationId: string) {
-            let now = moment().format('YYYY-MM-DD');
-            let earlier = moment().subtract(3, 'months').format('YYYY-MM-DD');
-            return this.$http.get(this.apiUrl + 'Organization/' + organizationId + '/Summary?startDate=' + earlier + '&endDate=' + now).then(res => res.data);
-        }
     }
     angular.module('Upkeeper')
         .service('organizationService', OrganizationService);

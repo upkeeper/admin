@@ -92,7 +92,7 @@ namespace upk {
             this.$location.path('/Computers/Create');
         };
 
-        delete() {
+        deleteItems() {
             angular.forEach(this.computers, item => {
                 if (item.selected) {
                     this.computerService.removeComputer(item.Id);

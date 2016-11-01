@@ -29,7 +29,7 @@ h3.page-header General
         .form-group( ng-class="{ 'has-error': form.publishtime.$invalid }")
             label Publish Time
             .input-group.date#datetimepicker2
-                input.form-control(type="text" ng-model="vm.application.PublishTime | date:'yyyy-MM-dd HH:mm'")
+                input.form-control(type="text" ng-model="vm.application.PublishTime")
                 span.input-group-addon
                     span.glyphicon.glyphicon-calendar
             

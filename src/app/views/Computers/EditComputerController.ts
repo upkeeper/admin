@@ -212,6 +212,44 @@ namespace upk {
         getMergedSettigns() {
             this.computerService.getMergedSettings(this.$routeParams.id).then(data => this.mergedSettings = data);
         }
+
+        getComputerRdp(){
+            this.computerService.getComputerRdp(this.computer.Name).then(res => {
+                if (window.navigator.msSaveOrOpenBlob) {
+                    const blob = new Blob([decodeURIComponent(encodeURI(res))], {
+                        type: 'document;charset=utf-8;'
+                    });
+                    navigator.msSaveBlob(blob, `${this.computer.Name}.rdp`);
+                } else {
+                    var a = document.createElement('a');
+                    a.href = 'data:attachment/document;charset=utf-8,' + encodeURI(res);
+                    a.target = '_blank';
+                    a.download = `${this.computer.Name}.rdp`;
+                    document.body.appendChild(a);
+                    a.click();
+                }
+            })
+        }
+        getComputerVnc(){
+            this.computerService.getComputerVnc(this.computer.Name).then(res => {
+                if (window.navigator.msSaveOrOpenBlob) {
+                    const blob = new Blob([decodeURIComponent(encodeURI(res))], {
+                        type: 'document;charset=utf-8;'
+                    });
+                    navigator.msSaveBlob(blob, `${this.computer.Name}.cmd`);
+                } else {
+                    var a = document.createElement('a');
+                    const blob = new Blob([decodeURIComponent(encodeURI(res))], {
+                        type: 'document;charset=utf-8;'
+                    });
+                    a.href = URL.createObjectURL(blob);
+                    a.target = '_blank';
+                    a.download = `${this.computer.Name}.cmd`;
+                    document.body.appendChild(a);
+                    a.click();
+                }
+            })
+        }
     }
 
     angular.module('Upkeeper')

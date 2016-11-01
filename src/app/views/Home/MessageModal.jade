@@ -20,12 +20,28 @@
 					label Show Message
 					.radio
 						label
-						input(type="radio" ng-model="vm.newMessage.ShowClients" ng-value="false")
+						input(type="radio" ng-model="vm.newMessage.ShowClients" value="false" checked="checked")
 						span Only in this web
 					.radio
 						label
-						input(type="radio" ng-model="vm.newMessage.ShowClients" ng-value="true")
+						input(type="radio" ng-model="vm.newMessage.ShowClients" value="true")
 						span On all computers
+					.radio
+						label
+						input(type="radio" ng-model="vm.newMessage.ShowClients" value="maybe")
+						span On all computers in selected groups
+					.row.message-groups(ng-show="vm.newMessage.ShowClients == 'maybe'")
+						.col-xs-5
+							select(multiple="multiple")
+								option
+						.col-xs-2
+							button.btn.btn-primary
+								i.fa.fa-arrow-left
+							button.btn.btn-primary
+								i.fa.fa-arrow-right
+						.col-xs-5
+							select(multiple="multiple")
+								option
 				.modal-footer
 					input.btn.btn-primary(title="Save" value="Save" type="button" ng-click="vm.saveMessage()" data-dismiss="modal")
 					button.btn.btn-default(data-dismiss="modal") Close
