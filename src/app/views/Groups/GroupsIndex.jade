@@ -1,6 +1,8 @@
 include ../Shared/Searchbar.jade
 .row
-    label.total_items Showing {{app.limit.limit}} of total {{vm.groups.length}}
+    label.total_items
+        span(ng-show="app.limit.limit < vm.groups.length ") Showing {{app.limit.limit}} of total {{vm.groups.length}}
+        span(ng-show="app.limit.limit >= vm.groups.length ") Showing {{vm.groups.length}} of total {{vm.groups.length}}
 .row
     table.table.table-hover.table-striped.grouptable
         thead

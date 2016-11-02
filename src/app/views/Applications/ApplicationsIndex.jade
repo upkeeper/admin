@@ -1,6 +1,8 @@
 include ../Shared/Searchbar.jade
 .row
-    label.total_items Showing {{app.limit.limit}} of total {{vm.applications.length}}
+    label.total_items 
+        span(ng-show="app.limit.limit < vm.applications.length ") Showing {{app.limit.limit}} of total {{vm.applications.length}}
+        span(ng-show="app.limit.limit >= vm.applications.length ") Showing {{vm.applications.length}} of total {{vm.applications.length}}
 .row
     .form-inline(ng-show="vm.sortitems")
         .form-group

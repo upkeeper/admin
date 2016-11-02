@@ -1,6 +1,8 @@
 include ../Shared/Computersearchbar.jade
 .row
-    label.total_items Showing {{app.limit.limit}} of total {{vm.computers.length}}
+    label.total_items
+        span(ng-show="app.limit.limit < vm.computers.length ") Showing {{app.limit.limit}} of total {{vm.computers.length}}
+        span(ng-show="app.limit.limit >= vm.computers.length ") Showing {{vm.computers.length}} of total {{vm.computers.length}} 
 .row
     table.table.table-hover.table-striped.computertable
             thead

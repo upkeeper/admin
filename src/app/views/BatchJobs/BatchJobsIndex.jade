@@ -1,6 +1,8 @@
 include ../Shared/Searchbar.jade
 .row
-    label.total_items Showing {{app.limit.limit}} of total {{vm.batchJobs.length}}
+    label.total_items
+        span(ng-show="app.limit.limit < vm.batchJobs.length ") Showing {{app.limit.limit}} of total {{vm.batchJobs.length}}
+        span(ng-show="app.limit.limit >= vm.batchJobs.length ") Showing {{vm.batchJobs.length}} of total {{vm.batchJobs.length}}
 .row
     table.table.table-hover.table-striped
         thead

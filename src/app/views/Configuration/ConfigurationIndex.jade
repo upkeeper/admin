@@ -19,33 +19,43 @@
                 a(data-target="#um" aria-controls="home" role="tab" data-toggle="tab") Usage Metering
             li(role="presentation")
                 a(data-target="#ar" aria-controls="home" role="tab" data-toggle="tab") Application Requests
+            li(role="presentation")
+                a(data-target="#wsb" aria-controls="home" role="tab" data-toggle="tab") WSB
+            li(role="presentation")
+                a(data-target="#mdm" aria-controls="home" role="tab" data-toggle="tab") MDM
 .row
     form(name="form" novalidate ng-submit="vm.save()")
         .tab-content
             .tab-pane.fade.in.active#general
                 include ../Configuration/Tabs/General.jade
-                save-button(delete-permission="'Config_Manage'")
+                just-save()
             .tab-pane.fade#email
                 include ../Configuration/Tabs/Email.jade
-                save-button(delete-permission="'Config_Manage'")
+                just-save()
             .tab-pane.fade#BCD
                 include ../Configuration/Tabs/BCD.jade
-                save-button(delete-permission="'Config_Manage'")
+                just-save()
             .tab-pane.fade#disk
                 include ../Configuration/Tabs/Disk.jade
-                save-button(delete-permission="'Config_Manage'")
+                just-save()
             .tab-pane.fade#remote
                 include ../Configuration/Tabs/Remote.jade
-                save-button(delete-permission="'Config_Manage'")
+                just-save()
             .tab-pane.fade#adg
                 include ../Configuration/Tabs/ADG.jade
-                save-button(delete-permission="'Config_Manage'")
+                just-save()
             .tab-pane.fade#adu
                 include ../Configuration/Tabs/ADU.jade
-                save-button(delete-permission="'Config_Manage'")
+                just-save()
             .tab-pane.fade#um
                 include ../Configuration/Tabs/UM.jade
-                save-button(delete-permission="'Config_Manage'")
+                just-save()
             .tab-pane.fade#ar
                 include ../Configuration/Tabs/AR.jade
-                save-button(delete-permission="'Config_Manage'")
+                just-save()
+            .tab-pane.fade#wsb
+                include ../Configuration/Tabs/WSB.jade
+                just-save()
+            .tab-pane.fade#mdm
+                include ../Configuration/Tabs/MDM.jade
+                just-save()

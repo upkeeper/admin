@@ -83,14 +83,15 @@ h3.page-header General
             button.btn.btn-primary.btn-icon#getComputerInventory(type="button" value="Show Inventory" title="Show Inventory" data-toggle="modal" data-target="#computerInventory" ng-click="vm.getHardwareInventory()")
                 span Inventory 
                 i.fa.fa-archive
-        .panel.panel-primary
+        .panel.panel-primary(ng-show="vm.computer.ClientInformation.LastLoggedInUser")
             .panel-heading
                 h3.panel-title Last logged on user
             .panel-body
-                p Username: {{vm.computer.ClientInformation.LoggedInUser}}
-                p Fullname: {{vm.computer.ClientInformation.UserFullName}}
+                p Username: {{vm.computer.ClientInformation.LastLoggedInUser}}
+                p(ng-show="vm.computer.ClientInformation.TelephoneNumber") Fullname: {{vm.computer.ClientInformation.UserFullName}}
                     a(href="mailto:{{vm.computer.ClientInformation.Email}}")
                         i.fa.fa-envelope
-                p Telephone: {{vm.computer.ClientInformation.TelephoneNumber}}
+                p(ng-show="vm.computer.ClientInformation.TelephoneNumber") Telephone: {{vm.computer.ClientInformation.TelephoneNumber}}
+                p(ng-show="vm.computer.ClientInformation.Manager") Manager: {{vm.computer.ClientInformation.Manager}}
 include ../../Shared/Modals/ComputerInventoryModal.jade
 include ../../Shared/Modals/ComputerMergedSettings.jade

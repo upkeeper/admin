@@ -42,6 +42,7 @@ namespace upk {
 
         setListLimit() {
             this.$rootScope.listlimit = this.limit;
+            
         };
 
         setCurrentOrganization() {

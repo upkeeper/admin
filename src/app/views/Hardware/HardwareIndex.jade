@@ -1,6 +1,8 @@
 include ../Shared/Searchbar.jade
 .row
-    label.total_items Showing {{app.limit.limit}} of total {{vm.hardwares.length}}
+    label.total_items
+        span(ng-show="app.limit.limit < vm.hardwares.length ") Showing {{app.limit.limit}} of total {{vm.hardwares.length}}
+        span(ng-show="app.limit.limit >= vm.hardwares.length ") Showing {{vm.hardwares.length}} of total {{vm.hardwares.length}}
 .row
     table.table.table-hover.table-striped
             thead

@@ -20,15 +20,15 @@
 					label Show Message
 					.radio
 						label
-						input(type="radio" ng-model="vm.newMessage.ShowClients" value="false" checked="checked")
+						input(type="radio" ng-model="vm.newMessage.ShowClients" ng-value="false" checked="checked")
 						span Only in this web
 					.radio
 						label
-						input(type="radio" ng-model="vm.newMessage.ShowClients" value="true")
+						input(type="radio" ng-model="vm.newMessage.ShowClients" ng-value="true")
 						span On all computers
 					.radio
 						label
-						input(type="radio" ng-model="vm.newMessage.ShowClients" value="maybe")
+						input(type="radio" ng-model="vm.newMessage.ShowClients" ng-value="maybe")
 						span On all computers in selected groups
 					.row.message-groups(ng-show="vm.newMessage.ShowClients == 'maybe'")
 						.col-xs-5
